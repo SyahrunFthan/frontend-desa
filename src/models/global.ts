@@ -6,6 +6,11 @@ export interface Option {
   label: string;
   value: string;
 }
+export interface IncomeOption {
+  label: string;
+  value: string;
+  period_id: string;
+}
 
 export interface ErrorState {
   [key: string]: string;

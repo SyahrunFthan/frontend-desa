@@ -1,6 +1,10 @@
 import EmployeeCreate from "./employees/EmployeeCreate";
 import EmployeeEdit from "./employees/EmployeeEdit";
 import EmployeeList from "./employees/EmployeeList";
+import ExpenseCreate from "./expenses/ExpenseCreate";
+import ExpenseEdit from "./expenses/ExpenseEdit";
+import ExpenseStatistic from "./expenses/ExpenseStatistic";
+import ExpenseTable from "./expenses/ExpenseTable";
 import FamilyCardCreate from "./family-cards/FamilyCardCreate";
 import FamilyCardDescription from "./family-cards/FamilyCardDescription";
 import FamilyCardList from "./family-cards/FamilyCardList";
@@ -60,4 +64,8 @@ export {
   IncomeCreate,
   IncomeStatistic,
   IncomeEdit,
+  ExpenseTable,
+  ExpenseCreate,
+  ExpenseEdit,
+  ExpenseStatistic,
 };

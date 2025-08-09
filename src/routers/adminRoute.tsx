@@ -2,12 +2,14 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import {
   Dashboard,
   Employee,
+  Expense,
   FamilyCard,
   FamilyCardDetail,
   Income,
   IncomingLetter,
   OutgoingLetter,
   Period,
+  PeriodDetail,
   Resident,
   Role,
   User,
@@ -37,7 +39,9 @@ const AdminRoute = () => {
 
       {/* APBDES */}
       <Route path="periods" element={<Period />} />
+      <Route path="period/:id" element={<PeriodDetail />} />
       <Route path="incomes" element={<Income />} />
+      <Route path="expenses" element={<Expense />} />
     </Routes>
   );
 };

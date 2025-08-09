@@ -90,7 +90,10 @@
     "file": "File",
     "create": "Create Period",
     "title": "Period",
-    "chooseFile": "Choose File"
+    "chooseFile": "Choose File",
+    "detail": {
+      "title": "Period Detail"
+    }
   },
   "incomes": {
     "period_id": "Period",
@@ -103,5 +106,21 @@
     "createOfIncome": "Create of Income",
     "statistic": "Statistic",
     "edit": "Edit of Income"
+  },
+  "expense": {
+    "title": "Expense",
+    "list": "List of Expense",
+    "create": "Create",
+    "statistic": "Statistic",
+    "code": "Code",
+    "name": "Name",
+    "period": "Period",
+    "funding_source_id": "Funding Source",
+    "createOfExpense": "Create of Expense",
+    "is_main": "Not Main Point?",
+    "volume": "Volume",
+    "unit": "Unit",
+    "amount": "Amount",
+    "edit": "Edit of Expense"
   }
 }

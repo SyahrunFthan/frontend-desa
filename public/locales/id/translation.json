@@ -102,5 +102,21 @@
     "createOfIncome": "Tambah Data Pendapatan",
     "statistic": "Statistik",
     "edit": "Ubah Data Pendapatan"
+  },
+  "expense": {
+    "title": "Pengeluaran",
+    "list": "Daftar Pengeluaran",
+    "create": "Tambah Data",
+    "statistic": "Statistik",
+    "code": "Kode",
+    "name": "Nama",
+    "period": "Periode",
+    "funding_source_id": "Sumber Dana",
+    "createOfExpense": "Tambah Pengeluaran",
+    "is_main": "Bukan Poin Utama?",
+    "volume": "Volume",
+    "unit": "Satuan",
+    "amount": "Jumlah",
+    "edit": "Ubah Data Pengeluaran"
   }
 }

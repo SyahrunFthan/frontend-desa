@@ -115,7 +115,7 @@ export const menuItems = (t: TFunction): Item[] => [
         key: "expend",
         icon: <WalletOutlined />,
         label: t("expend"),
-        path: "/admin/expends",
+        path: "/admin/expenses",
       },
     ],
   },

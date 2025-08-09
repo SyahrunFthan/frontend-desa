@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import type { FamilyCardModel } from "../models/familyCard";
 import type { PeriodModel } from "../models/period";
 import type { IncomeModel } from "../models/income";
+import type { ExpenseModel } from "../models/expense";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -306,6 +307,42 @@ export const getPeriod = ({ current, pageSize, filters = {} }: QueryParams) => {
 
   return API.get(`/period?${params.toString()}`);
 };
+export const getPeriodIdIncome = ({
+  current,
+  pageSize,
+  filters = {},
+  id,
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/period/${id}/income?${params.toString()}`);
+};
+export const getPeriodIdExpense = ({
+  current,
+  pageSize,
+  filters = {},
+  id,
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/period/${id}/expense?${params.toString()}`);
+};
 export const createPeriod = (data: Omit<PeriodModel, "id">) => {
   return API.post("/period", data);
 };
@@ -346,4 +383,37 @@ export const updateIncome = (id: string, data: Omit<IncomeModel, "period">) => {
 };
 export const deleteIncome = (id: string) => {
   return API.delete(`/income/${id}`);
+};
+
+// Expense
+export const getExpense = ({
+  current,
+  pageSize,
+  filters = {},
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/expense?${params.toString()}`);
+};
+export const createExpense = (
+  data: Omit<ExpenseModel, "id" | "period" | "income">
+) => {
+  return API.post("/expense", data);
+};
+export const updateExpense = (
+  id: string,
+  data: Omit<ExpenseModel, "period" | "income">
+) => {
+  return API.put(`/expense/${id}`, data);
+};
+export const deleteExpense = (id: string) => {
+  return API.delete(`/expense/${id}`);
 };

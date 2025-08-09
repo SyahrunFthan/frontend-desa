@@ -3,7 +3,7 @@ import type { IncomeModel, IncomeTableParams } from "../models/income";
 import type { ColumnsType } from "antd/es/table";
 import { searchColumns, selectFilterColumn } from "./searchColumns";
 import type { Option } from "../models/global";
-import { Button, Popconfirm, Space, Tooltip } from "antd";
+import { Button, Popconfirm, Space, Tag, Tooltip } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 interface ColumnProps {
@@ -40,6 +40,9 @@ export const incomeColumns = ({
     }),
     sorter: (a, b) => a.period_id.localeCompare(b.period_id),
     sortDirections: ["ascend", "descend"],
+    render: (value) => {
+      return <Tag color="blue">{value}</Tag>;
+    },
   },
   {
     key: "code",
@@ -89,6 +92,9 @@ export const incomeColumns = ({
     }),
     sorter: (a, b) => a.abbreviation.localeCompare(b.abbreviation),
     sortDirections: ["ascend", "descend"],
+    render: (value) => {
+      return <Tag color="green">{value}</Tag>;
+    },
   },
   {
     key: "amount",
@@ -97,7 +103,11 @@ export const incomeColumns = ({
     sorter: (a, b) => a.amount - b.amount,
     sortDirections: ["ascend", "descend"],
     render: (value) => {
-      return `Rp ${value.toLocaleString()}`;
+      const num = Number(value ?? 0);
+      return `Rp ${num.toLocaleString("id-ID", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`;
     },
   },
   {
