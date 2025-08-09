@@ -4,6 +4,7 @@ import {
   Employee,
   FamilyCard,
   FamilyCardDetail,
+  Income,
   IncomingLetter,
   OutgoingLetter,
   Period,
@@ -36,6 +37,7 @@ const AdminRoute = () => {
 
       {/* APBDES */}
       <Route path="periods" element={<Period />} />
+      <Route path="incomes" element={<Income />} />
     </Routes>
   );
 };

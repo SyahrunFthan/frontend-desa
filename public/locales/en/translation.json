@@ -91,5 +91,17 @@
     "create": "Create Period",
     "title": "Period",
     "chooseFile": "Choose File"
+  },
+  "incomes": {
+    "period_id": "Period",
+    "name": "Name",
+    "abbreviation": "Abbreviation",
+    "code": "Code",
+    "amount": "Amount",
+    "list": "List of Income",
+    "create": "Create",
+    "createOfIncome": "Create of Income",
+    "statistic": "Statistic",
+    "edit": "Edit of Income"
   }
 }

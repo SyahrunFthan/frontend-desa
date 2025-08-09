@@ -1,61 +1,78 @@
-import { UploadOutlined } from "@ant-design/icons";
 import {
   Button,
   Flex,
   Form,
   InputNumber,
-  Typography,
-  Upload,
+  type FormInstance,
   type FormProps,
-  type UploadFile,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { PeriodModel } from "../../models/period";
-import { periodCreated } from "../../services/period";
+import { periodCreated, periodUpdated } from "../../services/period";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 
 interface Props {
+  fetchData: () => void;
+  setId: (id: string) => void;
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
-  fetchData: () => void;
+  form: FormInstance;
+  id: string;
 }
 
-const PeriodCreate = ({ fetchData, messageApi, notificationApi }: Props) => {
-  const [file, setFile] = useState<UploadFile[] | null>(null);
+const PeriodCreate = ({
+  fetchData,
+  messageApi,
+  notificationApi,
+  form,
+  id,
+  setId,
+}: Props) => {
   const [processing, setProcessing] = useState(false);
-  const [form] = Form.useForm();
   const { t } = useTranslation();
 
   const handleSubmit: FormProps["onFinish"] = (values: PeriodModel) => {
-    let formData = new FormData();
+    if (id) {
+      const data = {
+        year: values.year || "",
+        description: values.description || "",
+        id: id || "",
+      };
 
-    formData.append("year", (values.year ?? 0).toString());
-    if (values.description) {
-      formData.append("description", values.description);
+      periodUpdated({
+        data,
+        fetchData,
+        form,
+        id,
+        messageApi,
+        notificationApi,
+        setId,
+        setProcessing,
+      });
+    } else {
+      const data = {
+        year: values.year || "",
+        description: values.description || "",
+      };
+
+      periodCreated({
+        data,
+        fetchData,
+        form,
+        messageApi,
+        notificationApi,
+        setProcessing,
+      });
     }
-    if (file?.length && file[0]?.originFileObj) {
-      formData.append("file", file[0].originFileObj);
-    }
-
-    formData.forEach((r) => console.log(r));
-
-    periodCreated({
-      data: formData,
-      fetchData,
-      form,
-      messageApi,
-      notificationApi,
-      setProcessing,
-    });
   };
 
   return (
     <div className="w-full">
       <Form
-        className="w-full lg:w-[40%]"
+        className="w-full lg:w-[60%]"
         layout="vertical"
         onFinish={handleSubmit}
         form={form}
@@ -64,7 +81,7 @@ const PeriodCreate = ({ fetchData, messageApi, notificationApi }: Props) => {
           <InputNumber
             controls={false}
             minLength={4}
-            min={2020}
+            min={2000}
             className="w-full"
             placeholder="2020"
           />
@@ -72,24 +89,7 @@ const PeriodCreate = ({ fetchData, messageApi, notificationApi }: Props) => {
         <Form.Item name={"description"} label={t("period.description")}>
           <TextArea />
         </Form.Item>
-        <Form.Item name={"file"} label={t("period.chooseFile")}>
-          <Upload
-            accept=".pdf"
-            beforeUpload={() => false}
-            showUploadList
-            listType="picture"
-            multiple={false}
-            maxCount={1}
-            fileList={file ?? []}
-          >
-            <Flex vertical>
-              <Button icon={<UploadOutlined />}>Upload File</Button>
-              <Typography.Text className="italic text-gray-400">
-                Max file 2MB (.pdf)
-              </Typography.Text>
-            </Flex>
-          </Upload>
-        </Form.Item>
+
         <Form.Item style={{ textAlign: "start" }}>
           <Flex gap="small">
             <Button
@@ -98,13 +98,13 @@ const PeriodCreate = ({ fetchData, messageApi, notificationApi }: Props) => {
               htmlType="submit"
               disabled={processing}
             >
-              {t("button.add")}
+              {id ? t("button.save") : t("button.add")}
             </Button>
             <Button
               htmlType="button"
               onClick={() => {
                 form.resetFields();
-                setFile(null);
+                setId("");
               }}
             >
               {t("button.reset")}

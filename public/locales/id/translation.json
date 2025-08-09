@@ -90,5 +90,17 @@
     "file": "File",
     "title": "Periode",
     "chooseFile": "Pilih Berkas"
+  },
+  "incomes": {
+    "period_id": "Periode",
+    "name": "Nama",
+    "abbreviation": "Singkatan",
+    "code": "Kode",
+    "amount": "Jumlah",
+    "list": "Daftar Pemasukan",
+    "create": "Tambah Data",
+    "createOfIncome": "Tambah Data Pendapatan",
+    "statistic": "Statistik",
+    "edit": "Ubah Data Pendapatan"
   }
 }

@@ -5,6 +5,10 @@ import FamilyCardCreate from "./family-cards/FamilyCardCreate";
 import FamilyCardDescription from "./family-cards/FamilyCardDescription";
 import FamilyCardList from "./family-cards/FamilyCardList";
 import FamilyCardListResident from "./family-cards/FamilyCardListResident";
+import IncomeCreate from "./incomes/IncomeCreate";
+import IncomeEdit from "./incomes/IncomeEdit";
+import IncomeStatistic from "./incomes/IncomeStatistic";
+import IncomeTable from "./incomes/IncomeTable";
 import IncomingLetterCreate from "./incoming-letters/IncomingLetterCreate";
 import IncomingLetterList from "./incoming-letters/IncomingLetterList";
 import Loading from "./loading";
@@ -13,6 +17,8 @@ import OutgoingLetterCreate from "./outgoing-letters/OutgoingLetterCreate";
 import OutgoingLetterEdit from "./outgoing-letters/OutgoingLetterEdit";
 import OutgoingLetterList from "./outgoing-letters/OutgoingLetterList";
 import PeriodCreate from "./periods/PeriodCreate";
+import PeriodTable from "./periods/PeriodTable";
+import { PeriodUpload } from "./periods/PeriodUpload";
 import ResidentCreate from "./residents/ResidentCreate";
 import ResidentEdit from "./residents/ResidentEdit";
 import ResidentList from "./residents/ResidentList";
@@ -48,4 +54,10 @@ export {
   OutgoingLetterCreate,
   OutgoingLetterEdit,
   PeriodCreate,
+  PeriodTable,
+  PeriodUpload,
+  IncomeTable,
+  IncomeCreate,
+  IncomeStatistic,
+  IncomeEdit,
 };

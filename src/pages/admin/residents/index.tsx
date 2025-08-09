@@ -176,7 +176,7 @@ const Resident = () => {
     >
       {contextHolder}
       {contextHolderN}
-      <Tabs items={tabItems} />
+      <Tabs items={tabItems} type="card" size="middle" />
 
       {isOpenDrawer && (
         <ResidentEdit

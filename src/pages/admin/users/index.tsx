@@ -187,7 +187,12 @@ const User = () => {
     >
       {contextHolder}
       {contextHolderN}
-      <Tabs items={tabItems} defaultActiveKey="list" />
+      <Tabs
+        items={tabItems}
+        defaultActiveKey="list"
+        type="card"
+        size="middle"
+      />
 
       {isOpen && (
         <UserEdit

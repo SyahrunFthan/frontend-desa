@@ -2,6 +2,7 @@ import Dashboard from "./dashboard";
 import Employee from "./employees";
 import FamilyCard from "./family-cards";
 import FamilyCardDetail from "./family-cards/detail";
+import Income from "./incomes";
 import IncomingLetter from "./incoming-letters";
 import OutgoingLetter from "./outgoing-letters";
 import Period from "./periods";
@@ -20,4 +21,5 @@ export {
   IncomingLetter,
   OutgoingLetter,
   Period,
+  Income,
 };

@@ -1,151 +1,139 @@
 import type { TFunction } from "i18next";
 import type { PeriodModel, PeriodTableParams } from "../models/period";
-import type { EditableCellProps, EditableColumn } from "../models/global";
 import { searchColumns } from "./searchColumns";
-import { Button, Popconfirm, Space, Tooltip } from "antd";
-import {
-  CloseOutlined,
-  DeleteOutlined,
-  EditOutlined,
-  SaveOutlined,
-} from "@ant-design/icons";
+import { Button, Popconfirm, Space, Tooltip, type UploadFile } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import type { ColumnsType } from "antd/es/table";
+import { Link } from "react-router-dom";
+import type { MessageInstance } from "antd/es/message/interface";
+import type { NotificationInstance } from "antd/es/notification/interface";
+import { PeriodUpload } from "../components";
 
 interface ColumnProps {
-  tableParams: PeriodTableParams;
   handleDelete: (id: string) => void;
-  setEditingRecord: (record: PeriodModel | undefined) => void;
+  handleEdit: (record: PeriodModel) => void;
   setTableParams: (params: PeriodTableParams) => void;
-  processing: boolean;
-  editingRecord: PeriodModel | undefined;
+  setFile: (file: UploadFile[] | null) => void;
+  fetchData: () => void;
+  tableParams: PeriodTableParams;
+  messageApi: MessageInstance;
+  notificationApi: NotificationInstance;
   t: TFunction;
+  file: UploadFile[] | null;
+  processing: boolean;
 }
 
-const periodColumns = ({
-  editingRecord,
+export const periodColumns = ({
   handleDelete,
+  handleEdit,
   processing,
-  setEditingRecord,
   setTableParams,
   t,
   tableParams,
-}: ColumnProps): EditableColumn<PeriodModel>[] => [
-  {
-    key: "no",
-    title: "No.",
-    render: (_, __, index) => {
-      const pageSize = Number(tableParams.pagination?.pageSize);
-      const current = Number(tableParams.pagination?.current);
-      const start = (current - 1) * pageSize + index + 1;
+  messageApi,
+  notificationApi,
+  fetchData,
+}: ColumnProps): ColumnsType<PeriodModel> => {
+  return [
+    {
+      key: "no",
+      title: "No.",
+      render: (_, __, index) => {
+        const pageSize = Number(tableParams.pagination?.pageSize);
+        const current = Number(tableParams.pagination?.current);
+        const start = (current - 1) * pageSize + index + 1;
 
-      return start;
+        return start;
+      },
+      width: "5%",
+      align: "center",
     },
-    width: "5%",
-    align: "center",
-  },
-  {
-    key: "year",
-    title: t("period.year"),
-    dataIndex: "year",
-    ...searchColumns<PeriodModel>("tahun", (value) => {
-      setTableParams({
-        ...tableParams,
-        filters: {
-          ...tableParams.filters,
-          year: value,
-        },
-      });
-    }),
-    sorter: (a, b) => a.year.localeCompare(b.year),
-    sortDirections: ["ascend", "descend"],
-  },
-  {
-    key: "description",
-    dataIndex: "description",
-    title: t("period.description"),
-    sorter: (a, b) => a.description.localeCompare(b.description),
-    sortDirections: ["ascend", "descend"],
-  },
-  {
-    key: "action",
-    title: "#",
-    dataIndex: "id",
-    align: "center",
-    width: "10%",
-    fixed: "right",
-    render: (value, record) => {
-      return editingRecord && editingRecord.id == record.id ? (
-        <Space size="small" wrap>
-          <Tooltip title="save">
-            <Button
-              type="link"
-              htmlType="submit"
-              icon={<SaveOutlined />}
-              disabled={processing}
-              loading={processing}
-            />
-          </Tooltip>
-          <Popconfirm
-            title="Sure to cancel?"
-            onConfirm={() => setEditingRecord(undefined)}
-          >
-            <Tooltip title="cancel">
-              <Button type="link" danger icon={<CloseOutlined />} />
-            </Tooltip>
-          </Popconfirm>
-        </Space>
-      ) : (
-        <Space size="small" wrap>
-          <Tooltip title="edit">
-            <Button
-              type="link"
-              icon={<EditOutlined />}
-              disabled={editingRecord != undefined || processing}
-              htmlType="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setEditingRecord(record);
-              }}
-            />
-          </Tooltip>
-          <Popconfirm
-            title="Confirm delete?"
-            description={`Delete ${record.year}`}
-            onConfirm={() => handleDelete(value)}
-          >
-            <Tooltip title="delete">
+    {
+      key: "year",
+      title: t("period.year"),
+      dataIndex: "year",
+      ...searchColumns<PeriodModel>("tahun", (value) => {
+        setTableParams({
+          ...tableParams,
+          filters: {
+            ...tableParams.filters,
+            year: value,
+          },
+        });
+      }),
+      sorter: (a, b) => a.year.localeCompare(b.year),
+      sortDirections: ["ascend", "descend"],
+      render: (value, record) => {
+        return (
+          <Link className="text-blue-500" to={`/admin/period/${record.id}`}>
+            {value}
+          </Link>
+        );
+      },
+    },
+    {
+      key: "description",
+      dataIndex: "description",
+      title: t("period.description"),
+      sorter: (a, b) => a.description.localeCompare(b.description),
+      sortDirections: ["ascend", "descend"],
+      render: (value) => {
+        return value ? value : "-";
+      },
+    },
+    {
+      key: "file",
+      dataIndex: "file",
+      title: t("period.file"),
+      sorter: (a, b) => (a.file || "").localeCompare(b.file || ""),
+      sortDirections: ["ascend", "descend"],
+      render: (value, record) => {
+        return (
+          <PeriodUpload
+            value={value}
+            path_file={record.path_file}
+            id={record.id}
+            messageApi={messageApi}
+            notificationApi={notificationApi}
+            fetchData={fetchData}
+          />
+        );
+      },
+    },
+    {
+      key: "action",
+      title: "#",
+      dataIndex: "id",
+      align: "center",
+      width: "10%",
+      fixed: "right",
+      render: (value, record) => {
+        return (
+          <Space size="small">
+            <Tooltip title="Edit">
               <Button
                 type="link"
-                htmlType="button"
-                danger
-                icon={<DeleteOutlined />}
                 disabled={processing}
-              />
+                onClick={() => handleEdit(record)}
+              >
+                <EditOutlined />
+              </Button>
             </Tooltip>
-          </Popconfirm>
-        </Space>
-      );
+            <Popconfirm
+              title={`Confirm delete ${record?.year}?`}
+              onConfirm={() => handleDelete(value)}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Tooltip title="Delete">
+                <Button danger type="link" disabled={processing}>
+                  <DeleteOutlined />
+                </Button>
+              </Tooltip>
+            </Popconfirm>
+          </Space>
+        );
+      },
     },
-  },
-];
-
-export const editTablePeriodColumns = (
-  param: ColumnProps
-): EditableColumn<PeriodModel>[] => {
-  const isEditing = (record: PeriodModel) =>
-    record.id === param.editingRecord?.id;
-
-  return periodColumns(param).map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-
-    return {
-      ...col,
-      onCell: (record): EditableCellProps<PeriodModel> => ({
-        editing: isEditing(record),
-        record,
-        col,
-      }),
-    };
-  });
+  ];
 };

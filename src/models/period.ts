@@ -4,8 +4,8 @@ export interface PeriodModel {
   id: string;
   year: string;
   description: string;
-  file: string;
-  path_file: string;
+  file?: string;
+  path_file?: string;
 }
 
 export interface PeriodFilters {

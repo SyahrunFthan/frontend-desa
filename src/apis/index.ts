@@ -6,6 +6,8 @@ import type { AuthForm } from "../models/auth";
 import { getItem, removeItem, setItem } from "../helpers/storage";
 import { jwtDecode } from "jwt-decode";
 import type { FamilyCardModel } from "../models/familyCard";
+import type { PeriodModel } from "../models/period";
+import type { IncomeModel } from "../models/income";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -304,15 +306,16 @@ export const getPeriod = ({ current, pageSize, filters = {} }: QueryParams) => {
 
   return API.get(`/period?${params.toString()}`);
 };
-export const createPeriod = (data: FormData) => {
-  return API.post("/period", data, {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "multipart/form-data",
-    },
-  });
+export const createPeriod = (data: Omit<PeriodModel, "id">) => {
+  return API.post("/period", data);
 };
-export const updatePeriod = (id: string, data: FormData) => {
+export const updatePeriod = (id: string, data: PeriodModel) => {
+  return API.put(`/period/${id}`, data);
+};
+export const deletePeriod = (id: string) => {
+  return API.delete(`/period/${id}`);
+};
+export const uploadPeriod = (id: string, data: FormData) => {
   return API.patch(`/period/${id}`, data, {
     headers: {
       Accept: "application/json",
@@ -320,6 +323,27 @@ export const updatePeriod = (id: string, data: FormData) => {
     },
   });
 };
-export const deletePeriod = (id: string) => {
-  return API.delete(`/period/${id}`);
+
+// Income
+export const getIncome = ({ current, pageSize, filters = {} }: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/income?${params.toString()}`);
+};
+export const createIncome = (data: Omit<IncomeModel, "id" | "period">) => {
+  return API.post("/income", data);
+};
+export const updateIncome = (id: string, data: Omit<IncomeModel, "period">) => {
+  return API.put(`/income/${id}`, data);
+};
+export const deleteIncome = (id: string) => {
+  return API.delete(`/income/${id}`);
 };
