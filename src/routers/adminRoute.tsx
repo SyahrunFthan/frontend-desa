@@ -10,6 +10,7 @@ import {
   OutgoingLetter,
   Period,
   PeriodDetail,
+  Region,
   Resident,
   Role,
   User,
@@ -42,6 +43,9 @@ const AdminRoute = () => {
       <Route path="period/:id" element={<PeriodDetail />} />
       <Route path="incomes" element={<Income />} />
       <Route path="expenses" element={<Expense />} />
+
+      {/* Title Region */}
+      <Route path="regions" element={<Region />} />
     </Routes>
   );
 };

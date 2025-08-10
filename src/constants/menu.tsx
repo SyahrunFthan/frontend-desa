@@ -125,7 +125,7 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "map",
         icon: <EnvironmentOutlined />,
-        label: t("map"),
+        label: t("region.title"),
         path: "/admin/regions",
       },
       {
@@ -156,12 +156,6 @@ export const menuItems = (t: TFunction): Item[] => [
         icon: <SwitcherOutlined />,
         label: t("service"),
         path: "/admin/services",
-      },
-      {
-        key: "map",
-        icon: <EnvironmentOutlined />,
-        label: t("map"),
-        path: "/admin/regions",
       },
       {
         key: "social-assistance",

@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import type { RoleModel } from "../models/role";
 import type { UserForm, UserUpdateForm } from "../models/user";
-import type { QueryParams } from "../models/global";
+import type { QueryParams, QuerySearch } from "../models/global";
 import type { AuthForm } from "../models/auth";
 import { getItem, removeItem, setItem } from "../helpers/storage";
 import { jwtDecode } from "jwt-decode";
@@ -9,6 +9,7 @@ import type { FamilyCardModel } from "../models/familyCard";
 import type { PeriodModel } from "../models/period";
 import type { IncomeModel } from "../models/income";
 import type { ExpenseModel } from "../models/expense";
+import type { RegionModel } from "../models/region";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -416,4 +417,23 @@ export const updateExpense = (
 };
 export const deleteExpense = (id: string) => {
   return API.delete(`/expense/${id}`);
+};
+
+// Region
+export const getRegion = ({ current, pageSize, search }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/region?${params.toString()}`);
+};
+export const createRegion = (data: Omit<RegionModel, "id" | "leader">) => {
+  return API.post("/region", data);
+};
+export const updateRegion = (id: string, data: Omit<RegionModel, "leader">) => {
+  return API.put(`/region/${id}`, data);
+};
+export const deleteRegion = (id: string) => {
+  return API.delete(`/region/${id}`);
 };

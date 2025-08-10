@@ -16,6 +16,8 @@ import IncomeTable from "./incomes/IncomeTable";
 import IncomingLetterCreate from "./incoming-letters/IncomingLetterCreate";
 import IncomingLetterList from "./incoming-letters/IncomingLetterList";
 import Loading from "./loading";
+import DrawControl from "./maps/DrawControl";
+import MapView from "./maps/MapView";
 import EditableCell from "./other/EditTableCell";
 import OutgoingLetterCreate from "./outgoing-letters/OutgoingLetterCreate";
 import OutgoingLetterEdit from "./outgoing-letters/OutgoingLetterEdit";
@@ -23,6 +25,9 @@ import OutgoingLetterList from "./outgoing-letters/OutgoingLetterList";
 import PeriodCreate from "./periods/PeriodCreate";
 import PeriodTable from "./periods/PeriodTable";
 import { PeriodUpload } from "./periods/PeriodUpload";
+import RegionCreate from "./regions/RegionCreate";
+import RegionEdit from "./regions/RegionEdit";
+import RegionTable from "./regions/RegionTable";
 import ResidentCreate from "./residents/ResidentCreate";
 import ResidentEdit from "./residents/ResidentEdit";
 import ResidentList from "./residents/ResidentList";
@@ -68,4 +73,9 @@ export {
   ExpenseCreate,
   ExpenseEdit,
   ExpenseStatistic,
+  RegionTable,
+  RegionCreate,
+  MapView,
+  DrawControl,
+  RegionEdit,
 };

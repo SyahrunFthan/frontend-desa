@@ -23,6 +23,13 @@ export interface QueryParams {
   id?: string;
 }
 
+export interface QuerySearch {
+  search: string;
+  current: number;
+  pageSize: number;
+  id?: string;
+}
+
 export interface FormAppend {
   key: string;
   value: any;

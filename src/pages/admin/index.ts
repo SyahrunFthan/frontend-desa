@@ -8,6 +8,7 @@ import IncomingLetter from "./incoming-letters";
 import OutgoingLetter from "./outgoing-letters";
 import Period from "./periods";
 import PeriodDetail from "./periods/detail";
+import Region from "./regions";
 import Resident from "./residents";
 import Role from "./roles";
 import User from "./users";
@@ -26,4 +27,5 @@ export {
   PeriodDetail,
   Income,
   Expense,
+  Region,
 };

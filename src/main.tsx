@@ -7,6 +7,9 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
 import "./i18n.ts";
+import "leaflet/dist/leaflet.css";
+import "leaflet-draw";
+import "leaflet-draw/dist/leaflet.draw.css";
 
 dayjs.locale("id");
 axios.defaults.withCredentials = true;
