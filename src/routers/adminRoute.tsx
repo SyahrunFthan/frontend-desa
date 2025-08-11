@@ -11,8 +11,11 @@ import {
   Period,
   PeriodDetail,
   Region,
+  RegionDetail,
   Resident,
   Role,
+  RTUnit,
+  RWUnit,
   User,
 } from "../pages";
 import { getItem } from "../helpers/storage";
@@ -46,6 +49,9 @@ const AdminRoute = () => {
 
       {/* Title Region */}
       <Route path="regions" element={<Region />} />
+      <Route path="region/:id" element={<RegionDetail />} />
+      <Route path="citizen-associations" element={<RWUnit />} />
+      <Route path="neighborhood-associations" element={<RTUnit />} />
     </Routes>
   );
 };

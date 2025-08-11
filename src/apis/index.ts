@@ -10,6 +10,8 @@ import type { PeriodModel } from "../models/period";
 import type { IncomeModel } from "../models/income";
 import type { ExpenseModel } from "../models/expense";
 import type { RegionModel } from "../models/region";
+import type { RWUnitModel } from "../models/rwUnit";
+import type { RTUnitModel } from "../models/rtUnit";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -436,4 +438,42 @@ export const updateRegion = (id: string, data: Omit<RegionModel, "leader">) => {
 };
 export const deleteRegion = (id: string) => {
   return API.delete(`/region/${id}`);
+};
+
+// RW Unit
+export const getRWUnit = ({ current, pageSize, search }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/rw-unit?${params.toString()}`);
+};
+export const createRWUnit = (data: Omit<RWUnitModel, "id">) => {
+  return API.post("/rw-unit", data);
+};
+export const updateRWUnit = (id: string, data: RWUnitModel) => {
+  return API.put(`/rw-unit/${id}`, data);
+};
+export const deleteRWUnit = (id: string) => {
+  return API.delete(`/rw-unit/${id}`);
+};
+
+// RT Unit
+export const getRTUnit = ({ current, pageSize, search }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/rt-unit?${params.toString()}`);
+};
+export const createRTUnit = (data: Omit<RTUnitModel, "id">) => {
+  return API.post("/rt-unit", data);
+};
+export const updateRTUnit = (id: string, data: RTUnitModel) => {
+  return API.put(`/rt-unit/${id}`, data);
+};
+export const deleteRTUnit = (id: string) => {
+  return API.delete(`/rt-unit/${id}`);
 };

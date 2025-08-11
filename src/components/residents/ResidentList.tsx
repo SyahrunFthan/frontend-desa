@@ -112,6 +112,7 @@ const ResidentList = ({
         pagination={tableParams.pagination}
         loading={loading}
         onChange={handleChangeTable}
+        scroll={{ x: "max-content" }}
       />
     </Card>
   );

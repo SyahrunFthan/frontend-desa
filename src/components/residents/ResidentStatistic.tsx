@@ -13,7 +13,7 @@ interface Props {
 const ResidentStatistic = ({ profesions, religions }: Props) => {
   return (
     <Row gutter={[16, 16]}>
-      <Col span={12}>
+      <Col sm={24} xs={24} lg={12} xl={12} xxl={12}>
         <Card>
           <Typography.Title level={3}>
             Statistics By Occupation
@@ -30,7 +30,7 @@ const ResidentStatistic = ({ profesions, religions }: Props) => {
           />
         </Card>
       </Col>
-      <Col span={12}>
+      <Col sm={24} xs={24} md={24} lg={12} xl={12} xxl={12}>
         <Card>
           <Typography.Title level={3}>Statistics By Religion</Typography.Title>
 

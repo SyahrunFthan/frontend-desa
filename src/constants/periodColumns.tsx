@@ -266,6 +266,16 @@ export const expensePeriodColumns = ({
       sortDirections: ["ascend", "descend"],
     },
     {
+      key: "funding_source_id",
+      title: t("expense.funding_source_id"),
+      dataIndex: "funding_source_id",
+      sorter: (a, b) => a.funding_source_id.localeCompare(b.funding_source_id),
+      sortDirections: ["ascend", "descend"],
+      render: (_, record) => {
+        return <Tag color="green">{record.income.abbreviation}</Tag>;
+      },
+    },
+    {
       key: "amount",
       title: t("expense.amount"),
       dataIndex: "amount",
@@ -277,16 +287,6 @@ export const expensePeriodColumns = ({
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })}`;
-      },
-    },
-    {
-      key: "funding_source_id",
-      title: t("expense.funding_source_id"),
-      dataIndex: "funding_source_id",
-      sorter: (a, b) => a.funding_source_id.localeCompare(b.funding_source_id),
-      sortDirections: ["ascend", "descend"],
-      render: (_, record) => {
-        return <Tag color="green">{record.income.abbreviation}</Tag>;
       },
     },
   ];

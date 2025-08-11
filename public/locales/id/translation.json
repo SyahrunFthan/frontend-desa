@@ -31,8 +31,19 @@
   "gallery": "Galeri",
   "news": "Berita",
   "periods": "Periode",
-  "rt": "Data RT",
-  "rw": "Data RW",
+  "rt": {
+    "title": "Rukun Tetangga",
+    "list": "Daftar Rukun Tetangga",
+    "code": "Kode",
+    "name_of_chairman": "Nama Ketua",
+    "rw_id": "No. RW"
+  },
+  "rw": {
+    "title": "Rukun Warga",
+    "list": "Daftar Rukun Warga",
+    "code": "Kode",
+    "name_of_chairman": "Nama Ketua"
+  },
   "village": "Desa",
   "change password": "Ubah Kata Sandi",
   "sign out": "Keluar Aplikasi",

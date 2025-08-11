@@ -87,7 +87,7 @@ const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
       <Form
         layout="vertical"
         form={form}
-        className="w-full lg:w-[25%]"
+        className="w-full lg:w-[30%]"
         onFinish={handleSubmit}
       >
         <Form.Item name={"employee_id"} label="ID Employee" required>

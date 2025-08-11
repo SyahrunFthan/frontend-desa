@@ -34,6 +34,10 @@ import ResidentList from "./residents/ResidentList";
 import ResidentStatistic from "./residents/ResidentStatistic";
 import RoleForm from "./roles/RoleForm";
 import RoleTable from "./roles/RoleTable";
+import RTUnitForm from "./rt-units/RTUnitForm";
+import RTUnitTable from "./rt-units/RTUnitTable";
+import RWUnitForm from "./rw-units/RWUnitForm";
+import RWUnitTable from "./rw-units/RWUnitTable";
 import UserCreate from "./user/UserCreate";
 import UserEdit from "./user/UserEdit";
 import UserList from "./user/UserList";
@@ -78,4 +82,8 @@ export {
   MapView,
   DrawControl,
   RegionEdit,
+  RWUnitForm,
+  RWUnitTable,
+  RTUnitForm,
+  RTUnitTable,
 };

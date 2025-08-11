@@ -73,7 +73,7 @@ const IncomingLetterCreate = ({
       <Form
         layout="vertical"
         form={form}
-        className="w-full lg:w-[25%]"
+        className="w-full lg:w-[30%]"
         onFinish={handleSubmit}
       >
         <Form.Item label={t("incoming letters.code")} name={"code"} required>

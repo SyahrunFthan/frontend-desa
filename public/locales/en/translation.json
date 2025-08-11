@@ -20,7 +20,10 @@
     "land_area": "Area",
     "color": "Color",
     "geo_json": "Geo Json",
-    "is_draw": "Create Your Own Line?"
+    "is_draw": "Create Your Own Line?",
+    "detail": {
+      "title": "Hemlet Detail"
+    }
   },
   "income": "Income",
   "expend": "Expenditure",
@@ -35,8 +38,19 @@
   "sign out": "Sign Out",
   "create": "Create",
   "periods": "Period",
-  "rt": "RT Unit",
-  "rw": "RW Unit",
+  "rt": {
+    "title": "Neighborhood Association",
+    "list": "List of Neighborhood Association",
+    "code": "Code",
+    "name_of_chairman": "Leader",
+    "rw_id": "Number Citizen Association"
+  },
+  "rw": {
+    "title": "Citizen Association",
+    "list": "List of Citizen Association",
+    "code": "Code",
+    "name_of_chairman": "Leader"
+  },
   "incoming letter list": "List of Incoming Letter",
   "menu title": {
     "letter": "Letter Management",

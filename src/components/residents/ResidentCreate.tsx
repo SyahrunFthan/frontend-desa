@@ -67,6 +67,10 @@ const ResidentCreate = ({
       formData.append("profesion", values.profesion);
     }
 
+    if (values.region_id !== undefined) {
+      formData.append("region_id", values.region_id);
+    }
+
     if (file?.length && file[0].originFileObj) {
       formData.append("file", file[0].originFileObj);
     }
@@ -89,7 +93,7 @@ const ResidentCreate = ({
       <Form
         layout="vertical"
         form={form}
-        className="w-full lg:w-[25%]"
+        className="w-full lg:w-[30%]"
         onFinish={handleSubmit}
       >
         <Form.Item
