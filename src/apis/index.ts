@@ -477,3 +477,41 @@ export const updateRTUnit = (id: string, data: RTUnitModel) => {
 export const deleteRTUnit = (id: string) => {
   return API.delete(`/rt-unit/${id}`);
 };
+
+// Service
+export const getServices = ({
+  current,
+  pageSize,
+  filters = {},
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/service?${params.toString()}`);
+};
+export const createService = (data: FormData) => {
+  return API.post("/service", data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const updateService = (id: string, data: FormData) => {
+  return API.patch(`/service/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const deleteService = (id: string) => {
+  return API.delete(`/service/${id}`);
+};

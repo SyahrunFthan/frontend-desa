@@ -136,3 +136,14 @@ export const positions = [
     value: 8,
   },
 ];
+
+export const status: Option[] = [
+  {
+    label: "Aktif",
+    value: "active",
+  },
+  {
+    label: "Tidak Aktif",
+    value: "inactive",
+  },
+];

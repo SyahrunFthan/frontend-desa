@@ -16,6 +16,7 @@ import {
   Role,
   RTUnit,
   RWUnit,
+  Service,
   User,
 } from "../pages";
 import { getItem } from "../helpers/storage";
@@ -52,6 +53,9 @@ const AdminRoute = () => {
       <Route path="region/:id" element={<RegionDetail />} />
       <Route path="citizen-associations" element={<RWUnit />} />
       <Route path="neighborhood-associations" element={<RTUnit />} />
+
+      {/* Village Management */}
+      <Route path="services" element={<Service />} />
     </Routes>
   );
 };

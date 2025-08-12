@@ -154,7 +154,7 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "service",
         icon: <SwitcherOutlined />,
-        label: t("service"),
+        label: t("service.title"),
         path: "/admin/services",
       },
       {

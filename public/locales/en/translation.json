@@ -9,7 +9,15 @@
   "outgoing letter": "Outgoing Letter",
   "submission service": "Service Submission",
   "stall": "Stall",
-  "service": "Public Service",
+  "service": {
+    "title": "Public Service",
+    "name": "Name",
+    "type_service": "Category",
+    "status_service": "Status",
+    "create": "Create",
+    "createOfService": "Create of Service",
+    "list": "List of Public Service"
+  },
   "region": {
     "title": "Hamlet Boundaries",
     "list": "List of Region",

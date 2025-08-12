@@ -38,6 +38,9 @@ import RTUnitForm from "./rt-units/RTUnitForm";
 import RTUnitTable from "./rt-units/RTUnitTable";
 import RWUnitForm from "./rw-units/RWUnitForm";
 import RWUnitTable from "./rw-units/RWUnitTable";
+import ServiceCreate from "./services/ServiceCreate";
+import ServiceEdit from "./services/ServiceEdit";
+import ServiceTable from "./services/ServiceTable";
 import UserCreate from "./user/UserCreate";
 import UserEdit from "./user/UserEdit";
 import UserList from "./user/UserList";
@@ -86,4 +89,7 @@ export {
   RWUnitTable,
   RTUnitForm,
   RTUnitTable,
+  ServiceCreate,
+  ServiceTable,
+  ServiceEdit,
 };

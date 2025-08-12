@@ -9,7 +9,15 @@
   "outgoing letter": "Surat Keluar",
   "submission service": "Pengajuan Layanan",
   "stall": "Lapak",
-  "service": "Layanan",
+  "service": {
+    "title": "Pelayanan Publik",
+    "name": "Nama",
+    "type_service": "Kategori Layanan",
+    "status_service": "Status Layanan",
+    "create": "Tambah Data",
+    "createOfService": "Tambah Data Layanan",
+    "list": "Daftar Pelayanan Publik"
+  },
   "region": {
     "title": "Batas Dusun",
     "list": "Daftar Dusun",
