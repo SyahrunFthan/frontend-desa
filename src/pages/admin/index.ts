@@ -15,6 +15,7 @@ import Role from "./roles";
 import RTUnit from "./rt-units";
 import RWUnit from "./rw-units";
 import Service from "./services";
+import SocialAssistance from "./social-assistances";
 import User from "./users";
 
 export {
@@ -36,4 +37,5 @@ export {
   RTUnit,
   RegionDetail,
   Service,
+  SocialAssistance,
 };

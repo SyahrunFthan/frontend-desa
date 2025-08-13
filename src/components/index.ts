@@ -41,6 +41,8 @@ import RWUnitTable from "./rw-units/RWUnitTable";
 import ServiceCreate from "./services/ServiceCreate";
 import ServiceEdit from "./services/ServiceEdit";
 import ServiceTable from "./services/ServiceTable";
+import AssistanceCategory from "./social-assistances/AssistanceCategory";
+import SocialAssistanceComponent from "./social-assistances/SocialAssistance";
 import UserCreate from "./user/UserCreate";
 import UserEdit from "./user/UserEdit";
 import UserList from "./user/UserList";
@@ -92,4 +94,6 @@ export {
   ServiceCreate,
   ServiceTable,
   ServiceEdit,
+  AssistanceCategory,
+  SocialAssistanceComponent,
 };

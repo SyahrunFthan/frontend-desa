@@ -12,6 +12,8 @@ import type { ExpenseModel } from "../models/expense";
 import type { RegionModel } from "../models/region";
 import type { RWUnitModel } from "../models/rwUnit";
 import type { RTUnitModel } from "../models/rtUnit";
+import type { AssistanceCategoryModel } from "../models/assistanceCategory";
+import type { SocialAssistanceModel } from "../models/socialAssistance";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -514,4 +516,65 @@ export const updateService = (id: string, data: FormData) => {
 };
 export const deleteService = (id: string) => {
   return API.delete(`/service/${id}`);
+};
+
+// Assistance Category
+export const getAssistanceCategory = ({
+  current,
+  pageSize,
+  search,
+}: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/assistance-category?${params.toString()}`);
+};
+export const createAssistanceCategory = (
+  data: Omit<AssistanceCategoryModel, "id">
+) => {
+  return API.post("/assistance-category", data);
+};
+export const updateAssistanceCategory = (
+  id: string,
+  data: AssistanceCategoryModel
+) => {
+  return API.put(`/assistance-category/${id}`, data);
+};
+export const deleteAssistanceCategory = (id: string) => {
+  return API.delete(`/assistance-category/${id}`);
+};
+
+// Social Assistance
+export const getSocialAssistance = ({
+  current,
+  pageSize,
+  filters = {},
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/social-assistance?${params.toString()}`);
+};
+export const createSocialAssistance = (
+  data: Omit<SocialAssistanceModel, "id">
+) => {
+  return API.post("/social-assistance", data);
+};
+export const updateSocialAssistance = (
+  id: string,
+  data: Omit<SocialAssistanceModel, "id">
+) => {
+  return API.put(`/social-assistance/${id}`, data);
+};
+export const deleteSocialAssistance = (id: string) => {
+  return API.delete(`/social-assistance/${id}`);
 };

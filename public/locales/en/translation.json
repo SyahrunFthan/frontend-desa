@@ -35,7 +35,27 @@
   },
   "income": "Income",
   "expend": "Expenditure",
-  "social assistance": "Social Assistance",
+  "social_assistance": {
+    "title": "Social Assistance",
+    "list": "List of Social Assistance",
+    "create": "Create Data",
+    "resident_id": "ID Resident",
+    "assistance_id": "Category",
+    "status_assistance": "Status",
+    "month_of_aid": "Month",
+    "receipt_at": "Date of Receipt",
+    "edit": "Edit of Social Assistance",
+    "createOf": "Create of Social Assistance",
+    "category": {
+      "list": "List of Category",
+      "name": "Name",
+      "description": "Description",
+      "type_assistance": "Payment Type",
+      "amount": "Amount",
+      "status": "Status",
+      "year": "Year"
+    }
+  },
   "tax": "Tax",
   "development": "Development",
   "report": "Report",

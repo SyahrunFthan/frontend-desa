@@ -17,6 +17,7 @@ import {
   RTUnit,
   RWUnit,
   Service,
+  SocialAssistance,
   User,
 } from "../pages";
 import { getItem } from "../helpers/storage";
@@ -56,6 +57,7 @@ const AdminRoute = () => {
 
       {/* Village Management */}
       <Route path="services" element={<Service />} />
+      <Route path="social-assistances" element={<SocialAssistance />} />
     </Routes>
   );
 };

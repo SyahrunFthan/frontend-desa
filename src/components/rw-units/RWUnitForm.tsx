@@ -73,7 +73,7 @@ const RWUnitForm = ({
     <Form
       form={form}
       layout="vertical"
-      className="w-full lg:w-[70%]"
+      className="w-full lg:w-[60%]"
       onFinish={id ? handleUpdate : handleCreate}
     >
       <Form.Item name={"code"} label={t("rw.code")} required>

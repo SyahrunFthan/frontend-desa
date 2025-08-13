@@ -101,7 +101,7 @@ const RegionTable = ({
           }
           onPressEnter={() => fetchData()}
         />
-        <Button htmlType="button" onClick={() => fetchData()} type="primary">
+        <Button htmlType="button" onClick={() => fetchData()}>
           <SearchOutlined />
         </Button>
       </Flex>

@@ -160,7 +160,7 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "social-assistance",
         icon: <IdcardOutlined />,
-        label: t("social assistance"),
+        label: t("social_assistance.title"),
         path: "/admin/social-assistances",
       },
       {

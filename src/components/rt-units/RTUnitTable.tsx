@@ -88,7 +88,7 @@ const RTUnitTable = ({
 
   return (
     <>
-      <Flex gap={"small"} className="w-full lg:w-[40%]">
+      <Flex gap={"small"} className="w-full lg:w-[30%]">
         <Input
           placeholder="Search"
           onChange={(e) =>
