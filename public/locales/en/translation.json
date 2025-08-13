@@ -16,7 +16,8 @@
     "status_service": "Status",
     "create": "Create",
     "createOfService": "Create of Service",
-    "list": "List of Public Service"
+    "list": "List of Public Service",
+    "edit": "Edit of Public Service"
   },
   "region": {
     "title": "Hamlet Boundaries",

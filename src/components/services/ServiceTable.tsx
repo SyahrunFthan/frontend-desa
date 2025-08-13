@@ -3,7 +3,7 @@ import type { NotificationInstance } from "antd/es/notification/interface";
 import type { ServiceModel, ServiceTableParams } from "../../models/service";
 import { useState, type Dispatch, type SetStateAction } from "react";
 import type { TFunction } from "i18next";
-import { Card, Table, Typography } from "antd";
+import { Table, Typography } from "antd";
 import { serviceColumns } from "../../constants/serviceColumns";
 import { serviceDeleted } from "../../services/service";
 import { processFinish, processStart } from "../../helpers/process";
@@ -66,7 +66,7 @@ const ServiceTable = ({
   });
 
   return (
-    <Card>
+    <>
       <Typography.Title level={3}>{t("service.list")}</Typography.Title>
 
       <Table
@@ -89,7 +89,7 @@ const ServiceTable = ({
           });
         }}
       />
-    </Card>
+    </>
   );
 };
 

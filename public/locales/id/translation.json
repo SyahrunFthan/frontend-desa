@@ -16,7 +16,8 @@
     "status_service": "Status Layanan",
     "create": "Tambah Data",
     "createOfService": "Tambah Data Layanan",
-    "list": "Daftar Pelayanan Publik"
+    "list": "Daftar Pelayanan Publik",
+    "edit": "Ubah Pelayanan Publik"
   },
   "region": {
     "title": "Batas Dusun",

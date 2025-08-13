@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "../../../layouts/adminLayout";
 import type { ServiceModel, ServiceTableParams } from "../../../models/service";
-import { message, notification, Tabs, type TabsProps } from "antd";
+import { Card, Col, message, notification, Row } from "antd";
 import { useTranslation } from "react-i18next";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { DashboardOutlined } from "@ant-design/icons";
 import { getServices } from "../../../apis";
 import type { AxiosError } from "axios";
@@ -30,7 +30,6 @@ const Service = () => {
   const [dataSource, setDataSource] = useState<ServiceModel[]>([]);
   const [loading, setLoading] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [activeTab, setActiveTab] = useState("list");
   const [id, setId] = useState("");
   const [record, setRecord] = useState<ServiceModel>({
     id: "",
@@ -43,8 +42,6 @@ const Service = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [notificationApi, contextHolderN] = notification.useNotification();
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const fetchData = async () => {
     try {
@@ -77,55 +74,6 @@ const Service = () => {
     }
   };
 
-  const handleChangeTab: TabsProps["onChange"] = (tab) => {
-    const query = new URLSearchParams();
-    query.set("tab", tab);
-    setActiveTab(tab);
-    navigate({ search: query.toString() });
-  };
-
-  const items: TabsProps["items"] = [
-    {
-      key: "list",
-      label: t("service.list"),
-      children: (
-        <ServiceTable
-          dataSource={dataSource}
-          loading={loading}
-          messageApi={messageApi}
-          notificationApi={notificationApi}
-          setRecord={setRecord}
-          setId={setId}
-          setTableParams={setTableParams}
-          t={t}
-          tableParams={tableParams}
-          fetchData={fetchData}
-          setOpenDrawer={setOpenDrawer}
-        />
-      ),
-    },
-    {
-      key: "create",
-      label: t("service.create"),
-      children: (
-        <ServiceCreate
-          fetchData={fetchData}
-          messageApi={messageApi}
-          notificationApi={notificationApi}
-          t={t}
-        />
-      ),
-    },
-  ];
-
-  useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    const tab = query.get("tab");
-    if (tab && ["list", "create"].includes(tab)) {
-      setActiveTab(tab);
-    }
-  }, [location.search]);
-
   useEffect(() => {
     fetchData();
   }, [
@@ -154,14 +102,33 @@ const Service = () => {
       {contextHolder}
       {contextHolderN}
 
-      <Tabs
-        items={items}
-        type="card"
-        size="middle"
-        activeKey={activeTab}
-        defaultActiveKey="list"
-        onChange={handleChangeTab}
-      />
+      <Card>
+        <Row gutter={[16, 16]}>
+          <Col sm={24} xs={24} lg={12} md={12} xl={10} xxl={10}>
+            <ServiceCreate
+              fetchData={fetchData}
+              messageApi={messageApi}
+              notificationApi={notificationApi}
+              t={t}
+            />
+          </Col>
+          <Col sm={24} xs={24} lg={12} md={12} xl={14} xxl={14}>
+            <ServiceTable
+              dataSource={dataSource}
+              loading={loading}
+              messageApi={messageApi}
+              notificationApi={notificationApi}
+              setRecord={setRecord}
+              setId={setId}
+              setTableParams={setTableParams}
+              t={t}
+              tableParams={tableParams}
+              fetchData={fetchData}
+              setOpenDrawer={setOpenDrawer}
+            />
+          </Col>
+        </Row>
+      </Card>
 
       {openDrawer && (
         <ServiceEdit
