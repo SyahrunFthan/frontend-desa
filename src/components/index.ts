@@ -43,6 +43,9 @@ import ServiceEdit from "./services/ServiceEdit";
 import ServiceTable from "./services/ServiceTable";
 import AssistanceCategory from "./social-assistances/AssistanceCategory";
 import SocialAssistanceComponent from "./social-assistances/SocialAssistance";
+import TaxCreate from "./taxes/TaxCreate";
+import TaxEdit from "./taxes/TaxEdit";
+import TaxTable from "./taxes/TaxTable";
 import UserCreate from "./user/UserCreate";
 import UserEdit from "./user/UserEdit";
 import UserList from "./user/UserList";
@@ -96,4 +99,7 @@ export {
   ServiceEdit,
   AssistanceCategory,
   SocialAssistanceComponent,
+  TaxTable,
+  TaxCreate,
+  TaxEdit,
 };

@@ -14,6 +14,7 @@ import type { RWUnitModel } from "../models/rwUnit";
 import type { RTUnitModel } from "../models/rtUnit";
 import type { AssistanceCategoryModel } from "../models/assistanceCategory";
 import type { SocialAssistanceModel } from "../models/socialAssistance";
+import type { TaxModel } from "../models/tax";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -577,4 +578,28 @@ export const updateSocialAssistance = (
 };
 export const deleteSocialAssistance = (id: string) => {
   return API.delete(`/social-assistance/${id}`);
+};
+
+// Tax
+export const getTax = ({ current, pageSize, filters = {} }: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/tax?${params.toString()}`);
+};
+export const createTax = (data: Omit<TaxModel, "id">) => {
+  return API.post("/tax", data);
+};
+export const updateTax = (id: string, data: Omit<TaxModel, "id">) => {
+  return API.put(`/tax/${id}`, data);
+};
+export const deleteTax = (id: string) => {
+  return API.delete(`/tax/${id}`);
 };

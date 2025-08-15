@@ -55,7 +55,7 @@ export function processSuccessN(
   setTimeout(() => {
     api.success({
       key: key,
-      message: "success",
+      message: "Success",
       description: content,
       onClose: () => {
         extra();

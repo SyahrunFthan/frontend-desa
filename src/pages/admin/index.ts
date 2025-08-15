@@ -16,6 +16,7 @@ import RTUnit from "./rt-units";
 import RWUnit from "./rw-units";
 import Service from "./services";
 import SocialAssistance from "./social-assistances";
+import Tax from "./taxes";
 import User from "./users";
 
 export {
@@ -38,4 +39,5 @@ export {
   RegionDetail,
   Service,
   SocialAssistance,
+  Tax,
 };

@@ -55,7 +55,20 @@
       "edit": "Ubah Data Kategori Bantuan Sosial"
     }
   },
-  "tax": "Pajak",
+  "tax": {
+    "title": "Pajak",
+    "list": "Daftar Pajak",
+    "create": "Tambah Data",
+    "reference_number": "Nomor Objek Pajak",
+    "taxpayer_name": "Nama Objek Pajak",
+    "resident_id": "ID Penduduk",
+    "taxpayer_address": "Alamat Objek Pajak",
+    "status": "Status Pembayaran",
+    "amount": "Jumlah",
+    "land_area": "Luas Tanah",
+    "building_area": "Luas Bangunan",
+    "edit": "Ubah Data Pajak"
+  },
   "development": "Pembangunan",
   "report": "Laporan",
   "gallery": "Galeri",

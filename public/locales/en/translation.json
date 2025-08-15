@@ -57,7 +57,20 @@
       "year": "Year"
     }
   },
-  "tax": "Tax",
+  "tax": {
+    "title": "Tax",
+    "list": "List of Tax",
+    "create": "Create",
+    "reference_number": "Reference Number",
+    "taxpayer_name": "Taxpayer Name",
+    "resident_id": "ID Resident",
+    "taxpayer_address": "Taxpayer Address",
+    "status": "Status Payment",
+    "amount": "Amount",
+    "land_area": "Land Area",
+    "building_area": "Building Area",
+    "edit": "Edit of Tax"
+  },
   "development": "Development",
   "report": "Report",
   "gallery": "Gallery",

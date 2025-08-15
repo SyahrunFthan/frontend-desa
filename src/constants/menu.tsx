@@ -166,7 +166,7 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "tax",
         icon: <DollarCircleOutlined />,
-        label: t("tax"),
+        label: t("tax.title"),
         path: "/admin/taxes",
       },
       {
