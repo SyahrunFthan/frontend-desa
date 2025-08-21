@@ -172,7 +172,7 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "development",
         icon: <ToolOutlined />,
-        label: t("development"),
+        label: t("development.title"),
         path: "/admin/developments",
       },
       {

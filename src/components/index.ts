@@ -1,3 +1,5 @@
+import DevelopmentCreate from "./developments/DevelopmentCreate";
+import DevelopmentTable from "./developments/DevelopmentTable";
 import EmployeeCreate from "./employees/EmployeeCreate";
 import EmployeeEdit from "./employees/EmployeeEdit";
 import EmployeeList from "./employees/EmployeeList";
@@ -102,4 +104,6 @@ export {
   TaxTable,
   TaxCreate,
   TaxEdit,
+  DevelopmentCreate,
+  DevelopmentTable,
 };

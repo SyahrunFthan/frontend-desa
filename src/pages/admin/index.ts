@@ -1,4 +1,5 @@
 import Dashboard from "./dashboard";
+import Development from "./developments";
 import Employee from "./employees";
 import Expense from "./expenses";
 import FamilyCard from "./family-cards";
@@ -40,4 +41,5 @@ export {
   Service,
   SocialAssistance,
   Tax,
+  Development,
 };
