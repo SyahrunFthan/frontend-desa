@@ -635,3 +635,32 @@ export const updateDevelopment = (
 export const deleteDevelopment = (id: string) => {
   return API.delete(`/development/${id}`);
 };
+
+// Activity
+export const getActivity = ({ current, pageSize, search }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/activity?${params.toString()}`);
+};
+export const createActivity = (data: FormData) => {
+  return API.post("/activity", data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const updateActivity = (id: string, data: FormData) => {
+  return API.patch(`/activity/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const deleteActivity = (id: string) => {
+  return API.delete(`/activity/${id}`);
+};

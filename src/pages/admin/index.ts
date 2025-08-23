@@ -1,3 +1,4 @@
+import Activity from "./activities";
 import Dashboard from "./dashboard";
 import Development from "./developments";
 import Employee from "./employees";
@@ -42,4 +43,5 @@ export {
   SocialAssistance,
   Tax,
   Development,
+  Activity,
 };

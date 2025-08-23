@@ -1,3 +1,6 @@
+import ActivityCreate from "./activities/ActivityCreate";
+import ActivityEdit from "./activities/ActivityEdit";
+import ActivityTable from "./activities/ActivityTable";
 import DevelopmentCreate from "./developments/DevelopmentCreate";
 import DevelopmentTable from "./developments/DevelopmentTable";
 import EmployeeCreate from "./employees/EmployeeCreate";
@@ -106,4 +109,7 @@ export {
   TaxEdit,
   DevelopmentCreate,
   DevelopmentTable,
+  ActivityTable,
+  ActivityCreate,
+  ActivityEdit,
 };

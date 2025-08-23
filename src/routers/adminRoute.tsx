@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import {
+  Activity,
   Dashboard,
   Development,
   Employee,
@@ -62,6 +63,7 @@ const AdminRoute = () => {
       <Route path="social-assistances" element={<SocialAssistance />} />
       <Route path="taxes" element={<Tax />} />
       <Route path="developments" element={<Development />} />
+      <Route path="activities" element={<Activity />} />
     </Routes>
   );
 };

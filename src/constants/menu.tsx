@@ -13,7 +13,6 @@ import {
   UsergroupAddOutlined,
   DollarCircleOutlined,
   ProfileOutlined,
-  FileImageOutlined,
   SlidersOutlined,
   UserOutlined,
   TagOutlined,
@@ -26,6 +25,7 @@ import {
 } from "@ant-design/icons";
 import type { TFunction } from "i18next";
 import type { Item } from "../models/global";
+import { ActivityIcon } from "lucide-react";
 
 export const menuItems = (t: TFunction): Item[] => [
   {
@@ -182,10 +182,10 @@ export const menuItems = (t: TFunction): Item[] => [
         path: "/admin/reports",
       },
       {
-        key: "gallery",
-        icon: <FileImageOutlined />,
-        label: t("gallery"),
-        path: "/admin/gallery",
+        key: "activities",
+        icon: <ActivityIcon />,
+        label: t("activity.title"),
+        path: "/admin/activities",
       },
     ],
   },

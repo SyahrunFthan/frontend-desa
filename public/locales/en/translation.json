@@ -89,7 +89,15 @@
     "status": "Development Status"
   },
   "report": "Report",
-  "gallery": "Gallery",
+  "activity": {
+    "title": "Activity",
+    "list": "List of Activity",
+    "createOf": "Create of Activity",
+    "name": "Name of Activity",
+    "date_of_activity": "Date of Activity",
+    "location": "Location",
+    "file": "Choose Image"
+  },
   "news": "News",
   "village": "Village Profile",
   "change password": "Change Password",
