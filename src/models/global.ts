@@ -1,6 +1,6 @@
 import type { ColumnType } from "antd/es/table";
 import type React from "react";
-import type { JSX } from "react";
+import type { JSX, ReactNode } from "react";
 
 export interface Option {
   label: string;
@@ -62,6 +62,13 @@ export interface EditableCellProps<T>
   record: T;
   col: EditableColumn<T>;
   selectOptions?: { label: string; value: string }[];
+}
+
+export interface ItemStatistic {
+  key: string;
+  title: string;
+  children: ReactNode;
+  description: string;
 }
 
 export const religions = [

@@ -213,3 +213,58 @@ export const menuItems = (t: TFunction): Item[] => [
     ],
   },
 ];
+
+export const menuMainItems: Item[] = [
+  {
+    items: [
+      {
+        key: "home",
+        icon: <HomeOutlined />,
+        label: "Beranda",
+        path: "/",
+      },
+      {
+        key: "check_bansos",
+        icon: <ActivityIcon />,
+        label: "Cek Bansos",
+        path: "/check-social-assistance",
+      },
+      {
+        key: "statistic",
+        icon: <ActivityIcon />,
+        label: "Statistik Desa",
+        path: "/statistic",
+      },
+      {
+        key: "stall_village",
+        icon: <ActivityIcon />,
+        label: "Lapak Desa",
+        path: "/stall-village",
+      },
+      {
+        key: "map_village",
+        icon: <ActivityIcon />,
+        label: "Peta Desa",
+        path: "/map-village",
+      },
+      {
+        key: "abdes",
+        icon: <ActivityIcon />,
+        label: "APBDes",
+        path: "/stall-village",
+      },
+      {
+        key: "profile_village",
+        icon: <ActivityIcon />,
+        label: "Profil Desa",
+        path: "/stall-village",
+      },
+      {
+        key: "terms_and_conditions",
+        icon: <ActivityIcon />,
+        label: "Syarat & Kebijakan",
+        path: "/terms",
+      },
+    ],
+  },
+];

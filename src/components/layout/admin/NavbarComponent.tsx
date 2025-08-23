@@ -5,7 +5,7 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Button, Grid, Layout, Space } from "antd";
 import React, { useEffect, useState } from "react";
-import ModalProfile from "./profileModal";
+import ModalProfile from "./ProfileModelComponent";
 import LanguageSwitcher from "../../locales/LanguageSwitcher";
 import enUS from "antd/locale/en_US";
 import idID from "antd/locale/id_ID";

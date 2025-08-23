@@ -88,7 +88,7 @@ export function processFailN(
   setTimeout(() => {
     api.error({
       key: key,
-      message: "error",
+      message: "Error",
       description: content,
       duration: 1.5,
     });

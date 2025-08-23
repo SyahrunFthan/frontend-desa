@@ -2,7 +2,7 @@ import type { TablePaginationConfig } from "antd";
 
 export interface PeriodModel {
   id: string;
-  year: string;
+  year: number;
   description: string;
   file?: string;
   path_file?: string;

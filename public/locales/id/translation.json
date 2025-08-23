@@ -86,6 +86,16 @@
     "end_at": "Tanggal Selesai",
     "status": "Status Pembangunan"
   },
+  "activity": {
+    "title": "Aktivitas",
+    "list": "Daftar Aktivitas",
+    "createOf": "Buat Aktivitas",
+    "name": "Nama Aktivitas",
+    "date_of_activity": "Tanggal Aktivitas",
+    "location": "Lokasi",
+    "file": "Pilih Gambar"
+  },
+
   "report": "Laporan",
   "gallery": "Galeri",
   "news": "Berita",

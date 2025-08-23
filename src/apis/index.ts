@@ -664,3 +664,23 @@ export const updateActivity = (id: string, data: FormData) => {
 export const deleteActivity = (id: string) => {
   return API.delete(`/activity/${id}`);
 };
+
+// Guest Router
+export const getSocialAssistanceByResidentId = (search: string) => {
+  return API.get(`/guest/social-assistance?search=${search}`);
+};
+export const getStatisticResident = ({
+  current,
+  pageSize,
+  search,
+}: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/guest/statistic-resident?${params.toString()}`);
+};
+export const getStatisticJob = () => {
+  return API.get("/guest/statistic-job");
+};

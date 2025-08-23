@@ -16,6 +16,16 @@ export interface AssistanceCategoryTableParams {
   search?: string;
 }
 
+export const assistanceCategoryState: AssistanceCategoryModel = {
+  amount: 0,
+  description: "",
+  id: "",
+  name: "",
+  status: "",
+  type_assistance: "",
+  year: 0,
+};
+
 export const typeAssistances: Option[] = [
   {
     label: "Uang",

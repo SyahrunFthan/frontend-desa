@@ -49,6 +49,7 @@ const ActivityCreate = ({
       messageApi,
       notificationApi,
       setProcessing,
+      setFile,
     });
   };
 

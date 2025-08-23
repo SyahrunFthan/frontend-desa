@@ -58,6 +58,7 @@ const ActivityEdit = ({
       setOpenDrawer,
       setProcessing,
       setRecord,
+      setFile,
     });
   };
 

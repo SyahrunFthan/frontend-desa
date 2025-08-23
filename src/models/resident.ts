@@ -6,7 +6,6 @@ export interface ResidentModel {
   id: string;
   resident_id: string;
   family_card_id: string;
-  family_card: FamilyCardModel;
   fullname: string;
   gender: string;
   religion: string;
@@ -20,6 +19,10 @@ export interface ResidentModel {
   address: string;
   image: string;
   path_image: string;
+}
+
+export interface Residents extends ResidentModel {
+  family_card?: FamilyCardModel;
 }
 
 export interface ResidentFilters {
@@ -45,6 +48,25 @@ export interface ReligionStatistic {
   name: string;
   total: number;
 }
+
+export const residentState: ResidentModel = {
+  address: "",
+  citizen_status: "",
+  date_of_birth: "",
+  family_card_id: "",
+  family_status: "",
+  fullname: "",
+  gender: "",
+  id: "",
+  image: "",
+  path_image: "",
+  place_of_birth: "",
+  profesion: "",
+  profesion_status: false,
+  region_id: "",
+  religion: "",
+  resident_id: "",
+};
 
 export const statusFamilies: Option[] = [
   {

@@ -1,4 +1,4 @@
-import type { FormInstance } from "antd";
+import type { FormInstance, UploadFile } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import type { Dispatch, SetStateAction } from "react";
@@ -19,6 +19,7 @@ interface CreateProps {
   form: FormInstance;
   data: FormData;
   setProcessing: Dispatch<SetStateAction<boolean>>;
+  setFile: Dispatch<SetStateAction<UploadFile[] | null>>;
   fetchData: () => void;
 }
 
@@ -29,6 +30,7 @@ export const activityCreated = async ({
   messageApi,
   notificationApi,
   setProcessing,
+  setFile,
 }: CreateProps) => {
   try {
     setProcessing(true);
@@ -42,6 +44,7 @@ export const activityCreated = async ({
         () => {
           fetchData();
           form.resetFields();
+          setFile(null);
         }
       );
     }
@@ -74,6 +77,7 @@ interface UpdateProps {
   setRecord: Dispatch<SetStateAction<ActivityModel>>;
   setProcessing: Dispatch<SetStateAction<boolean>>;
   setOpenDrawer: Dispatch<SetStateAction<boolean>>;
+  setFile: Dispatch<SetStateAction<UploadFile[] | null>>;
   fetchData: () => void;
 }
 
@@ -87,6 +91,7 @@ export const activityUpdated = async ({
   setProcessing,
   setRecord,
   setOpenDrawer,
+  setFile,
 }: UpdateProps) => {
   try {
     setProcessing(true);
@@ -102,6 +107,7 @@ export const activityUpdated = async ({
           form.resetFields();
           setRecord(activityState);
           setOpenDrawer(false);
+          setFile(null);
         }
       );
     }

@@ -77,6 +77,7 @@ const Login: React.FC = () => {
 
           <Form.Item
             name="password"
+            required
             label={
               <label className="block text-sm font-semibold text-[#005f5f]">
                 Password

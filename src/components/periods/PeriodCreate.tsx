@@ -37,7 +37,7 @@ const PeriodCreate = ({
   const handleSubmit: FormProps["onFinish"] = (values: PeriodModel) => {
     if (id) {
       const data = {
-        year: values.year || "",
+        year: values.year || 0,
         description: values.description || "",
         id: id || "",
       };
@@ -54,7 +54,7 @@ const PeriodCreate = ({
       });
     } else {
       const data = {
-        year: values.year || "",
+        year: values.year || 0,
         description: values.description || "",
       };
 

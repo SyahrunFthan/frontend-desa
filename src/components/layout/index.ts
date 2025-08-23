@@ -1,5 +1,13 @@
-import DrawerComponent from "./admin/drawer";
-import NavbarComponent from "./admin/navbar";
-import SidebarComponent from "./admin/sidebar";
+import DrawerComponent from "./admin/DrawerComponent";
+import NavbarComponent from "./admin/NavbarComponent";
+import SidebarComponent from "./admin/SidebarComponent";
+import FooterMainComponent from "./main/FooterComponent";
+import NavbarMainComponent from "./main/NavbarComponent";
 
-export { NavbarComponent, SidebarComponent, DrawerComponent };
+export {
+  NavbarComponent,
+  SidebarComponent,
+  DrawerComponent,
+  NavbarMainComponent,
+  FooterMainComponent,
+};

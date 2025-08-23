@@ -54,6 +54,8 @@ import TaxTable from "./taxes/TaxTable";
 import UserCreate from "./user/UserCreate";
 import UserEdit from "./user/UserEdit";
 import UserList from "./user/UserList";
+import JobStatistic from "./statistics/JobStatistic";
+import { default as ResidentMainStatistic } from "./statistics/ResidentStatistic";
 
 export {
   Loading,
@@ -112,4 +114,6 @@ export {
   ActivityTable,
   ActivityCreate,
   ActivityEdit,
+  ResidentMainStatistic,
+  JobStatistic,
 };
