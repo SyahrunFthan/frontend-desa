@@ -1,109 +1,155 @@
 import { useEffect, useRef } from "react";
 import { useMap } from "react-leaflet";
-import { area as turfArea } from "@turf/turf";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css";
+import "leaflet-draw";
 import "leaflet-draw/dist/leaflet.draw.css";
-import "leaflet-draw/dist/leaflet.draw.js";
-
-(L as any).GeometryUtil.readableArea = function (
-  area: number,
-  isMetric = true
-) {
-  const m2 = Math.abs(area || 0);
-  if (isMetric) {
-    if (m2 >= 1e6) return (m2 / 1e6).toFixed(2) + " km²";
-    if (m2 >= 1e4) return (m2 / 1e4).toFixed(2) + " ha";
-    return m2.toFixed(0) + " m²";
-  } else {
-    const yd2 = m2 * 1.1959900463;
-    return yd2.toFixed(0) + " yd²";
-  }
-};
 
 interface Props {
-  onChangeGeoJson: (geoJson: string) => void;
-  onChangeArea?: (area: string) => void;
-  singleShape?: boolean;
+  latitude: number;
+  longitude: number;
+  setLatitude: (latitude: number) => void;
+  setLongitude: (longitude: number) => void;
 }
 
 const DrawControl = ({
-  onChangeGeoJson,
-  onChangeArea,
-  singleShape = true,
+  latitude,
+  longitude,
+  setLatitude,
+  setLongitude,
 }: Props) => {
   const map = useMap();
-  const drawItemsRef = useRef<L.FeatureGroup>(new L.FeatureGroup());
-
-  const syncOut = () => {
-    const featureCollection: GeoJSON.FeatureCollection = {
-      type: "FeatureCollection",
-      features: [],
-    };
-    drawItemsRef.current.eachLayer((layer: any) => {
-      if (layer.toGeoJSON)
-        featureCollection.features.push(layer.toGeoJSON() as GeoJSON.Feature);
-    });
-    const totalAreaM2 =
-      featureCollection.features.reduce((sum, f) => {
-        try {
-          return sum + turfArea(f as any);
-        } catch {
-          return sum;
-        }
-      }, 0) || 0;
-
-    const totalAreaKm2 = totalAreaM2 / 1_000_000;
-    onChangeGeoJson(JSON.stringify(featureCollection));
-    onChangeArea?.(`${totalAreaKm2.toFixed(2)} Km2`);
-  };
+  const drawnItemsRef = useRef<L.FeatureGroup>(new L.FeatureGroup());
 
   useEffect(() => {
-    map.addLayer(drawItemsRef.current);
+    if (!map) return;
 
-    const drawControl = new (L.Control as any).Draw({
-      position: "topleft",
+    const drawnItems = drawnItemsRef.current;
+    map.addLayer(drawnItems);
+
+    const drawControl = new L.Control.Draw({
       draw: {
-        marker: false,
-        circle: false,
-        circlemarker: false,
+        polygon: false,
         polyline: false,
         rectangle: false,
-        polygon: {
-          allowIntersection: false,
-          showArea: true,
-          shapeOptions: { weight: 2 },
-        },
+        circle: false,
+        circlemarker: false,
+        marker: { icon: new L.Icon.Default() },
       },
       edit: {
-        featureGroup: drawItemsRef.current,
-        remove: true,
-        edit: { selectedPathOptions: { maintainColor: true } },
+        featureGroup: drawnItems,
+        remove: false,
       },
     });
 
-    map.addControl(drawControl as any);
+    map.addControl(drawControl);
 
-    const onCreated = (e: any) => {
-      if (singleShape) drawItemsRef.current.clearLayers();
-      drawItemsRef.current.addLayer(e.layer);
-      syncOut();
+    const onCreated = (event: any) => {
+      const { layer, layerType } = event;
+      if (layerType === "marker") {
+        const latlng = (layer as L.Marker).getLatLng();
+        drawnItems.clearLayers();
+        drawnItems.addLayer(layer);
+        setLatitude(latlng.lat);
+        setLongitude(latlng.lng);
+      }
     };
-    const onEdited = () => syncOut();
-    const onDeleted = () => syncOut();
+
+    const onEdited = (event: any) => {
+      const layers = event.layers;
+      layers.eachLayer((layer: any) => {
+        if (layer instanceof L.Marker) {
+          const latlng = layer.getLatLng();
+          setLatitude(latlng.lat);
+          setLongitude(latlng.lng);
+        }
+      });
+    };
 
     map.on(L.Draw.Event.CREATED, onCreated);
     map.on(L.Draw.Event.EDITED, onEdited);
-    map.on(L.Draw.Event.DELETED, onDeleted);
 
     return () => {
       map.off(L.Draw.Event.CREATED, onCreated);
       map.off(L.Draw.Event.EDITED, onEdited);
-      map.off(L.Draw.Event.DELETED, onDeleted);
-      map.removeControl(drawControl as any);
-      map.removeLayer(drawItemsRef.current);
+      map.removeControl(drawControl);
+      map.removeLayer(drawnItems);
     };
-  }, [map, singleShape, onChangeGeoJson, onChangeArea]);
+  }, [map, setLatitude, setLongitude]);
+
+  useEffect(() => {
+    if (!map) return;
+
+    const LocateControl = L.Control.extend({
+      options: { position: "topleft" as L.ControlPosition },
+      onAdd: () => {
+        const container = L.DomUtil.create(
+          "div",
+          "leaflet-bar leaflet-control"
+        );
+        const btn = L.DomUtil.create("a", "", container);
+        btn.href = "#";
+        btn.title = "Gunakan lokasi perangkat";
+        btn.innerHTML = "📍";
+
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.on(btn, "click", (e: any) => {
+          L.DomEvent.preventDefault(e);
+
+          if (!("geolocation" in navigator)) {
+            console.warn("Geolocation tidak didukung browser ini.");
+            return;
+          }
+
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const { latitude: lat, longitude: lng } = pos.coords;
+              setLatitude(lat);
+              setLongitude(lng);
+
+              const targetZoom = Math.max(map.getZoom(), 16);
+              map.flyTo([lat, lng], targetZoom);
+            },
+            (err) => {
+              console.error("Gagal mendapatkan lokasi:", err);
+            },
+            {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 10000,
+            }
+          );
+        });
+
+        return container;
+      },
+    });
+
+    const locateCtl = new LocateControl();
+    map.addControl(locateCtl);
+
+    return () => {
+      map.removeControl(locateCtl);
+    };
+  }, [map, setLatitude, setLongitude]);
+
+  useEffect(() => {
+    if (!map) return;
+    const drawnItems = drawnItemsRef.current;
+
+    const isNum = (v: any) => typeof v === "number" && Number.isFinite(v);
+    const bothZero =
+      isNum(latitude) && isNum(longitude) && latitude === 0 && longitude === 0;
+    const bothValid = isNum(latitude) && isNum(longitude) && !bothZero;
+
+    drawnItems.clearLayers();
+
+    if (bothValid) {
+      const marker = new L.Marker([latitude as number, longitude as number], {
+        icon: new L.Icon.Default(),
+      });
+      drawnItems.addLayer(marker);
+    }
+  }, [latitude, longitude, map]);
 
   return null;
 };

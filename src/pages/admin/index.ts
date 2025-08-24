@@ -3,6 +3,7 @@ import Dashboard from "./dashboard";
 import Development from "./developments";
 import Employee from "./employees";
 import Expense from "./expenses";
+import Facility from "./facilities";
 import FamilyCard from "./family-cards";
 import FamilyCardDetail from "./family-cards/detail";
 import Income from "./incomes";
@@ -44,4 +45,5 @@ export {
   Tax,
   Development,
   Activity,
+  Facility,
 };

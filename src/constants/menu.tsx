@@ -22,6 +22,7 @@ import {
   CalendarOutlined,
   HomeOutlined,
   ClusterOutlined,
+  BuildOutlined,
 } from "@ant-design/icons";
 import type { TFunction } from "i18next";
 import type { Item } from "../models/global";
@@ -140,6 +141,12 @@ export const menuItems = (t: TFunction): Item[] => [
         label: t("rt.title"),
         path: "/admin/neighborhood-associations",
       },
+      {
+        key: "facility",
+        icon: <BuildOutlined />,
+        label: t("facility.title"),
+        path: "/admin/facilities",
+      },
     ],
   },
   {
@@ -245,7 +252,7 @@ export const menuMainItems: Item[] = [
         key: "map_village",
         icon: <ActivityIcon />,
         label: "Peta Desa",
-        path: "/map-village",
+        path: "/maps",
       },
       {
         key: "abdes",

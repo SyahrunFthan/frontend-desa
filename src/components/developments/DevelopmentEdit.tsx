@@ -16,11 +16,12 @@ import {
 import type { TFunction } from "i18next";
 import dayjs from "dayjs";
 import MapView from "../maps/MapView";
-import type { LatLngLiteral } from "leaflet";
-import { Marker, useMapEvents } from "react-leaflet";
+import { Marker } from "react-leaflet";
 import { developmentUpdated } from "../../services/development";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
+import DrawControl from "../maps/DrawControl";
+import AutoCenter from "../maps/AutoCenter";
 
 interface Props {
   record: DevelopmentModel;
@@ -31,23 +32,6 @@ interface Props {
   notificationApi: NotificationInstance;
   fetchData: () => void;
 }
-
-const ClickHandler = ({
-  setPos,
-  onChange,
-}: {
-  setPos: (p: LatLngLiteral) => void;
-  onChange?: (p: LatLngLiteral) => void;
-}) => {
-  useMapEvents({
-    click(e) {
-      const p = { lat: e.latlng.lat, lng: e.latlng.lng };
-      setPos(p);
-      onChange?.(p);
-    },
-  });
-  return null;
-};
 
 const DevelopmentEdit = ({
   record,
@@ -62,9 +46,9 @@ const DevelopmentEdit = ({
   const [form] = Form.useForm();
   const lat = Form.useWatch("latitude", form);
   const lng = Form.useWatch("longitude", form);
-  const [pos, setPos] = useState<LatLngLiteral | null>(() => {
-    if (lat && lng) return { lat: lat, lng: lng };
-    return null;
+  const [location, setLocation] = useState({
+    latitude: lat,
+    longitude: lng,
   });
 
   useEffect(() => {
@@ -73,9 +57,9 @@ const DevelopmentEdit = ({
       start_at: dayjs(record.start_at, "YYYY-MM-DD"),
       end_at: dayjs(record.end_at, "YYYY-MM-DD"),
     });
-    setPos({
-      lat: record.latitude,
-      lng: record.longitude,
+    setLocation({
+      latitude: record.latitude,
+      longitude: record.longitude,
     });
   }, [record]);
 
@@ -87,8 +71,8 @@ const DevelopmentEdit = ({
         const data = {
           name: values.name ?? "",
           location: values.location ?? "",
-          latitude: values.latitude ?? 0,
-          longitude: values.longitude ?? 0,
+          latitude: values.latitude ?? 95,
+          longitude: values.longitude ?? 185,
           volume: values.volume ?? "",
           budget: values.budget ?? 0,
           source_of_fund: values.source_of_fund ?? "",
@@ -118,25 +102,33 @@ const DevelopmentEdit = ({
         <Input />
       </Form.Item>
       <MapView>
-        <ClickHandler
-          setPos={setPos}
-          onChange={(p) =>
-            form.setFieldsValue({ latitude: p.lat, longitude: p.lng })
-          }
+        <AutoCenter
+          lat={form.getFieldValue("latitude") ?? Number(location?.latitude)}
+          lng={form.getFieldValue("longitude") ?? Number(location?.longitude)}
+          zoom={17}
         />
 
-        {pos && (
-          <Marker
-            position={pos}
-            draggable
-            eventHandlers={{
-              dragend: (e) => {
-                const p = (e.target as L.Marker).getLatLng();
-                const next = { lat: p.lat, lng: p.lng };
-                setPos(next);
-              },
-            }}
-          />
+        <DrawControl
+          latitude={Number(location?.latitude)}
+          longitude={Number(location?.longitude)}
+          setLatitude={(value) => {
+            setLocation((prev) => ({
+              ...prev,
+              latitude: value,
+            }));
+            form.setFieldsValue({ latitude: value });
+          }}
+          setLongitude={(value) => {
+            setLocation((prev) => ({
+              ...prev,
+              longitude: value,
+            }));
+            form.setFieldsValue({ longitude: value });
+          }}
+        />
+
+        {location.latitude !== 0 && (
+          <Marker position={[location.latitude, location.longitude]} />
         )}
       </MapView>
       <Form.Item

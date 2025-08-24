@@ -2,23 +2,26 @@ import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
 import { type ReactNode } from "react";
-import ResizeOnShow from "../../helpers/resizeMap";
+import MapShow from "../../helpers/resizeMap";
 
 interface Props {
   children: ReactNode;
+  height?: string;
+  width?: string;
 }
 
-const MapView = ({ children }: Props) => {
+const MapView = ({ children, height = "600px", width = "100%" }: Props) => {
   const center: [number, number] = [-0.31342440920484194, 119.77449826624365];
 
   return (
     <MapContainer
       center={center}
       zoom={16}
-      style={{ height: "600px", width: "100%" }}
+      style={{ height: height, width: width }}
       className="z-0"
       scrollWheelZoom
     >
+      <MapShow active={true} />
       <LayersControl position="topright">
         <LayersControl.BaseLayer checked name="Open Street">
           <TileLayer
@@ -33,8 +36,6 @@ const MapView = ({ children }: Props) => {
           />
         </LayersControl.BaseLayer>
       </LayersControl>
-
-      <ResizeOnShow />
 
       {children}
     </MapContainer>

@@ -1,14 +1,25 @@
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 
-function ResizeOnShow() {
+const MapShow = ({ active }: { active: boolean }) => {
   const map = useMap();
   useEffect(() => {
-    setTimeout(() => {
+    if (!active) return;
+    const t = setTimeout(() => {
       map.invalidateSize();
-    }, 100);
-  }, [map]);
-  return null;
-}
+    }, 150);
+    return () => clearTimeout(t);
+  }, [active, map]);
 
-export default ResizeOnShow;
+  useEffect(() => {
+    const onLoad = () => map.invalidateSize();
+    map.on("load", onLoad);
+    return () => {
+      map.off("load", onLoad);
+    };
+  }, [map]);
+
+  return null;
+};
+
+export default MapShow;

@@ -1,6 +1,6 @@
 import type { ColumnType } from "antd/es/table";
 import type React from "react";
-import type { JSX, ReactNode } from "react";
+import type { JSX, ReactElement, ReactNode } from "react";
 
 export interface Option {
   label: string;
@@ -69,6 +69,7 @@ export interface ItemStatistic {
   title: string;
   children: ReactNode;
   description: string;
+  icon: ReactElement;
 }
 
 export const religions = [

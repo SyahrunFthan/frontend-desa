@@ -1,11 +1,23 @@
 import { Card, Col, message, Row } from "antd";
 import AppLayout from "../../../layouts/appLayout";
-import { Activity, TrendingUp } from "lucide-react";
+import {
+  Activity,
+  BookOpen,
+  Briefcase,
+  CalendarClock,
+  Users,
+} from "lucide-react";
 import { COLORS } from "../../../assets";
 import { useEffect, useMemo, useState } from "react";
 import type { ItemStatistic } from "../../../models/global";
 import { useLocation, useNavigate } from "react-router-dom";
-import { JobStatistic, ResidentMainStatistic } from "../../../components";
+import {
+  AgeGroupStatistic,
+  GenderStatistic,
+  JobStatistic,
+  ReligionStatistic,
+  ResidentMainStatistic,
+} from "../../../components";
 
 const StatisticPage = () => {
   const [activeKey, setActiveKey] = useState("statistic_resident");
@@ -25,31 +37,36 @@ const StatisticPage = () => {
       key: "statistic_resident",
       title: "Statistik Penduduk",
       description: "Lihat Statistik Penduduk Terbaru",
+      icon: <Activity />,
       children: <ResidentMainStatistic messageApi={messageApi} />,
     },
     {
       key: "statistic_jobs",
       title: "Statistik Berdasarkan Pekerjaan",
       description: "Lihat Statistik Pekerjaan Terbaru",
+      icon: <Briefcase />,
       children: <JobStatistic messageApi={messageApi} />,
     },
     {
       key: "statistic_gender",
       title: "Statistik Berdasarkan Jenis Kelamin",
       description: "Lihat Statistik Jenis Kelamin Terbaru",
-      children: "",
+      icon: <Users />,
+      children: <GenderStatistic messageApi={messageApi} />,
     },
     {
       key: "statistic_religion",
       title: "Statistik Berdasarkan Agama",
       description: "Lihat Statistik Agama Terbaru",
-      children: "",
+      icon: <BookOpen />,
+      children: <ReligionStatistic messageApi={messageApi} />,
     },
     {
       key: "statistic__age",
       title: "Statistik Kelompok Umur",
       description: "Lihat Statistik Kelompok Umur Terbaru",
-      children: "",
+      icon: <CalendarClock />,
+      children: <AgeGroupStatistic messageApi={messageApi} />,
     },
   ];
 
@@ -91,9 +108,9 @@ const StatisticPage = () => {
                 <div
                   onClick={() => handleChangeTab(item.key)}
                   key={item.key}
-                  className={`group p-4 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300 cursor-pointer bg-white hover:bg-gray-50 ${
+                  className={`group p-4 rounded-xl border border-blue-100 hover:border-blue-200 hover:shadow-md transition-all duration-300 cursor-pointer bg-white hover:bg-blue-50 ${
                     activeKey === item.key &&
-                    " shadow-xl transition-all duration-300"
+                    " transition-all duration-300 shadow-lg bg-blue-400/20"
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -101,7 +118,7 @@ const StatisticPage = () => {
                       <div
                         className={`p-2 rounded-lg bg-primary text-white shadow-sm group-hover:scale-110 transition-transform duration-200`}
                       >
-                        <TrendingUp className="w-5 h-5" />
+                        {item.icon}
                       </div>
                       <div>
                         <p className="font-semibold text-gray-800 text-sm group-hover:text-gray-900">

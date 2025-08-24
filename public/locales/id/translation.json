@@ -89,13 +89,26 @@
   "activity": {
     "title": "Aktivitas",
     "list": "Daftar Aktivitas",
-    "createOf": "Buat Aktivitas",
+    "createOf": "Tambah Data Aktivitas",
     "name": "Nama Aktivitas",
     "date_of_activity": "Tanggal Aktivitas",
     "location": "Lokasi",
     "file": "Pilih Gambar"
   },
-
+  "facility": {
+    "title": "Fasilitas",
+    "list": "Daftar Fasilitas",
+    "create": "Tambah Data",
+    "createOf": "Tambah Data Fasilitas",
+    "edit": "Edit Fasilitas",
+    "name": "Nama Fasilitas",
+    "type_facility": "Jenis Fasilitas",
+    "status": "Status Fasilitas",
+    "description": "Deskripsi",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "location": "Lokasi"
+  },
   "report": "Laporan",
   "gallery": "Galeri",
   "news": "Berita",

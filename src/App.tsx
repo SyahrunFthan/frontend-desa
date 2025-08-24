@@ -1,7 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminRoute from "./routers/adminRoute";
 import AuthRoute from "./routers/authRoute";
-import { HomePage, SocialAssistancePage, StatisticPage } from "./pages/main";
+import {
+  HomePage,
+  MapVillagePage,
+  SocialAssistancePage,
+  StatisticPage,
+} from "./pages/main";
 
 const App = () => {
   return (
@@ -13,6 +18,7 @@ const App = () => {
           element={<SocialAssistancePage />}
         />
         <Route path="/statistic" element={<StatisticPage />} />
+        <Route path="/maps" element={<MapVillagePage />} />
         <Route path="/admin/*" element={<AdminRoute />} />
         <Route path="/auth/*" element={<AuthRoute />} />
       </Routes>

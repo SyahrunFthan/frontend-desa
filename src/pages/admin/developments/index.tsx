@@ -164,6 +164,7 @@ const Development = () => {
         closable={false}
         title={t("development.edit")}
         width={520}
+        key={record.id}
       >
         <DevelopmentEdit
           record={record}

@@ -79,7 +79,7 @@ const JobStatistic = ({ messageApi }: Props) => {
                 : 0
             }% Dari total penduduk`}
             title="Total Penduduk Belum Bekerja"
-            total={total.totalWork}
+            total={total.totalNotWork}
             icon="🛋️"
             bgColor="#d19301"
           />

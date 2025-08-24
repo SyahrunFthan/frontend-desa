@@ -16,6 +16,7 @@ import type { AssistanceCategoryModel } from "../models/assistanceCategory";
 import type { SocialAssistanceModel } from "../models/socialAssistance";
 import type { TaxModel } from "../models/tax";
 import type { DevelopmentModel } from "../models/development";
+import type { FacilityModel } from "../models/facility";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -665,6 +666,25 @@ export const deleteActivity = (id: string) => {
   return API.delete(`/activity/${id}`);
 };
 
+// Facility
+export const getFacility = ({ current, pageSize, search }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/facility?${params.toString()}`);
+};
+export const createFacility = (data: Omit<FacilityModel, "id">) => {
+  return API.post("/facility", data);
+};
+export const updateFacility = (id: string, data: Omit<FacilityModel, "id">) => {
+  return API.put(`/facility/${id}`, data);
+};
+export const deleteFacility = (id: string) => {
+  return API.delete(`/facility/${id}`);
+};
+
 // Guest Router
 export const getSocialAssistanceByResidentId = (search: string) => {
   return API.get(`/guest/social-assistance?search=${search}`);
@@ -683,4 +703,13 @@ export const getStatisticResident = ({
 };
 export const getStatisticJob = () => {
   return API.get("/guest/statistic-job");
+};
+export const getStatisticGender = () => {
+  return API.get("/guest/statistic-gender");
+};
+export const getStatisticReligion = () => {
+  return API.get("/guest/statistic-religion");
+};
+export const getStatisticAgeGroup = () => {
+  return API.get("/guest/statistic-age");
 };

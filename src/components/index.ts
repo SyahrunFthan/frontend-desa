@@ -56,6 +56,12 @@ import UserEdit from "./user/UserEdit";
 import UserList from "./user/UserList";
 import JobStatistic from "./statistics/JobStatistic";
 import { default as ResidentMainStatistic } from "./statistics/ResidentStatistic";
+import GenderStatistic from "./statistics/GenderStatistic";
+import ReligionStatistic from "./statistics/ReligionStatistic";
+import AgeGroupStatistic from "./statistics/AgeGroupStatistic";
+import FacilityTable from "./facilities/FacilityTable";
+import FacilityCreate from "./facilities/FacilityCreate";
+import FacilityEdit from "./facilities/FacilityEdit";
 
 export {
   Loading,
@@ -116,4 +122,10 @@ export {
   ActivityEdit,
   ResidentMainStatistic,
   JobStatistic,
+  GenderStatistic,
+  ReligionStatistic,
+  AgeGroupStatistic,
+  FacilityTable,
+  FacilityCreate,
+  FacilityEdit,
 };

@@ -98,6 +98,20 @@
     "location": "Location",
     "file": "Choose Image"
   },
+  "facility": {
+    "title": "Facility",
+    "list": "List of Facility",
+    "create": "Create Data",
+    "createOf": "Create of Facility",
+    "edit": "Edit of Facility",
+    "name": "Facility of Name",
+    "type_facility": "Facility Type",
+    "status": "Facility Status",
+    "description": "Description",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "location": "Location"
+  },
   "news": "News",
   "village": "Village Profile",
   "change password": "Change Password",

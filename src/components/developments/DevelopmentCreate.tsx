@@ -12,12 +12,13 @@ import {
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import type { TFunction } from "i18next";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { statusWorks } from "../../models/development";
 import MapView from "../maps/MapView";
-import { Marker, useMapEvents } from "react-leaflet";
-import type { LatLngLiteral } from "leaflet";
+import { Marker } from "react-leaflet";
 import { developmentCreated } from "../../services/development";
+import DrawControl from "../maps/DrawControl";
+import AutoCenter from "../maps/AutoCenter";
 
 interface Props {
   t: TFunction;
@@ -25,23 +26,6 @@ interface Props {
   notificationApi: NotificationInstance;
   fetchData: () => void;
 }
-
-const ClickHandler = ({
-  setPos,
-  onChange,
-}: {
-  setPos: (p: LatLngLiteral) => void;
-  onChange?: (p: LatLngLiteral) => void;
-}) => {
-  useMapEvents({
-    click(e) {
-      const p = { lat: e.latlng.lat, lng: e.latlng.lng };
-      setPos(p);
-      onChange?.(p);
-    },
-  });
-  return null;
-};
 
 const DevelopmentCreate = ({
   fetchData,
@@ -51,20 +35,10 @@ const DevelopmentCreate = ({
 }: Props) => {
   const [processing, setProcessing] = useState(false);
   const [form] = Form.useForm();
-  const lat = Form.useWatch("latitude", form);
-  const lng = Form.useWatch("longitude", form);
-  const [pos, setPos] = useState<LatLngLiteral | null>(() => {
-    if (lat && lng) return { lat: lat, lng: lng };
-    return null;
+  const [location, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
   });
-
-  useEffect(() => {
-    if (typeof lat === "number" && typeof lng === "number") {
-      setPos({ lat: lat, lng: lng });
-    } else {
-      setPos(null);
-    }
-  }, [lat, lng]);
 
   return (
     <Card>
@@ -77,8 +51,8 @@ const DevelopmentCreate = ({
           const data = {
             name: values.name ?? "",
             location: values.location ?? "",
-            latitude: values.latitude ?? 0,
-            longitude: values.longitude ?? 0,
+            latitude: values.latitude ?? 95,
+            longitude: values.longitude ?? 185,
             volume: values.volume ?? "",
             budget: values.budget ?? 0,
             source_of_fund: values.source_of_fund ?? "",
@@ -224,6 +198,10 @@ const DevelopmentCreate = ({
                   htmlType="button"
                   onClick={() => {
                     form.resetFields();
+                    setLocation({
+                      latitude: 0,
+                      longitude: 0,
+                    });
                   }}
                 >
                   {t("button.reset")}
@@ -234,25 +212,38 @@ const DevelopmentCreate = ({
           <div className="flex flex-col w-full items-end">
             <div className="flex flex-col w-[80%]">
               <MapView>
-                <ClickHandler
-                  setPos={setPos}
-                  onChange={(p) =>
-                    form.setFieldsValue({ latitude: p.lat, longitude: p.lng })
+                <AutoCenter
+                  lat={
+                    form.getFieldValue("latitude") ?? Number(location?.latitude)
                   }
+                  lng={
+                    form.getFieldValue("longitude") ??
+                    Number(location?.longitude)
+                  }
+                  zoom={17}
                 />
 
-                {pos && (
-                  <Marker
-                    position={pos}
-                    draggable
-                    eventHandlers={{
-                      dragend: (e) => {
-                        const p = (e.target as L.Marker).getLatLng();
-                        const next = { lat: p.lat, lng: p.lng };
-                        setPos(next);
-                      },
-                    }}
-                  />
+                <DrawControl
+                  latitude={Number(location?.latitude)}
+                  longitude={Number(location?.longitude)}
+                  setLatitude={(value) => {
+                    setLocation((prev) => ({
+                      ...prev,
+                      latitude: value,
+                    }));
+                    form.setFieldsValue({ latitude: value });
+                  }}
+                  setLongitude={(value) => {
+                    setLocation((prev) => ({
+                      ...prev,
+                      longitude: value,
+                    }));
+                    form.setFieldsValue({ longitude: value });
+                  }}
+                />
+
+                {location.latitude !== 0 && location.longitude !== 0 && (
+                  <Marker position={[location.latitude, location.longitude]} />
                 )}
               </MapView>
             </div>

@@ -5,6 +5,7 @@ import {
   Development,
   Employee,
   Expense,
+  Facility,
   FamilyCard,
   FamilyCardDetail,
   Income,
@@ -52,11 +53,12 @@ const AdminRoute = () => {
       <Route path="incomes" element={<Income />} />
       <Route path="expenses" element={<Expense />} />
 
-      {/* Title Region */}
+      {/* Region */}
       <Route path="regions" element={<Region />} />
       <Route path="region/:id" element={<RegionDetail />} />
       <Route path="citizen-associations" element={<RWUnit />} />
       <Route path="neighborhood-associations" element={<RTUnit />} />
+      <Route path="facilities" element={<Facility />} />
 
       {/* Village Management */}
       <Route path="services" element={<Service />} />
