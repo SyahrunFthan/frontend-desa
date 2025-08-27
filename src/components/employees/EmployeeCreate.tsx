@@ -77,6 +77,7 @@ const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
       messageApi,
       notificationApi,
       setProcessing,
+      setFile,
     });
   };
 
@@ -158,7 +159,7 @@ const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
             <Button icon={<UploadOutlined />}>Upload Image</Button>
           </Upload>
         </Form.Item>
-        <Form.Item name={"file"} label="Choose Signature">
+        <Form.Item name={"signature"} label="Choose Signature">
           <Upload
             accept="image/*"
             beforeUpload={() => false}

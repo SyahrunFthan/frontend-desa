@@ -1,4 +1,4 @@
-import type { FormInstance } from "antd";
+import type { FormInstance, UploadFile } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import { facilityState, type FacilityModel } from "../models/facility";
@@ -18,9 +18,10 @@ interface CreateProps {
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
   form: FormInstance;
-  data: Omit<FacilityModel, "id">;
+  data: FormData;
   setProcessing: Dispatch<SetStateAction<boolean>>;
   setOpenDrawer: Dispatch<SetStateAction<boolean>>;
+  setFile: Dispatch<SetStateAction<UploadFile[] | null>>;
   fetchData: () => void;
 }
 
@@ -32,6 +33,7 @@ export const facilityCreated = async ({
   notificationApi,
   setOpenDrawer,
   setProcessing,
+  setFile,
 }: CreateProps) => {
   try {
     setProcessing(true);
@@ -46,12 +48,15 @@ export const facilityCreated = async ({
           form.resetFields();
           fetchData();
           setOpenDrawer(false);
+          setFile(null);
         }
       );
     }
   } catch (error) {
     const axiosError = error as AxiosError<{ message: string }>;
     if (axiosError.response?.status === 400) {
+      processErrorN(notificationApi, "facilityCreated", form, axiosError);
+    } else if (axiosError.response?.status === 422) {
       processErrorN(notificationApi, "facilityCreated", form, axiosError);
     } else {
       processFail(
@@ -71,11 +76,12 @@ interface UpdateProps {
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
   form: FormInstance;
-  data: Omit<FacilityModel, "id">;
+  data: FormData;
   id: string;
   setRecord: Dispatch<SetStateAction<FacilityModel>>;
   setProcessing: Dispatch<SetStateAction<boolean>>;
   setOpenDrawer: Dispatch<SetStateAction<boolean>>;
+  setFile: Dispatch<SetStateAction<UploadFile[] | null>>;
   fetchData: () => void;
 }
 
@@ -89,6 +95,7 @@ export const facilityUpdated = async ({
   setOpenDrawer,
   setProcessing,
   setRecord,
+  setFile,
 }: UpdateProps) => {
   try {
     setProcessing(true);
@@ -104,23 +111,26 @@ export const facilityUpdated = async ({
           fetchData();
           setRecord(facilityState);
           setOpenDrawer(false);
+          setFile(null);
         }
       );
     }
   } catch (error) {
     const axiosError = error as AxiosError<{ message: string }>;
     if (axiosError.response?.status === 400) {
-      processErrorN(notificationApi, "facilityCreated", form, axiosError);
+      processErrorN(notificationApi, "facilityUpdated", form, axiosError);
+    } else if (axiosError.response?.status === 422) {
+      processErrorN(notificationApi, "facilityUpdated", form, axiosError);
     } else if (axiosError.response?.status === 404) {
       processFail(
         messageApi,
-        "facilityCreated",
+        "facilityUpdated",
         axiosError.response?.data?.message || "Not Found"
       );
     } else {
       processFail(
         messageApi,
-        "facilityCreated",
+        "facilityUpdated",
         axiosError.response?.data?.message || "Server Error"
       );
     }
@@ -169,6 +179,8 @@ export const facilityDeleted = async ({
         axiosError.response?.data?.message || "Not Found"
       );
     } else {
+      console.log(axiosError.response);
+
       processFail(
         messageApi,
         "facilityDeleted",

@@ -62,6 +62,8 @@ import AgeGroupStatistic from "./statistics/AgeGroupStatistic";
 import FacilityTable from "./facilities/FacilityTable";
 import FacilityCreate from "./facilities/FacilityCreate";
 import FacilityEdit from "./facilities/FacilityEdit";
+import RegionDescription from "./regions/RegionDescription";
+import RegionFacilityTable from "./regions/RegionFacilityTable";
 
 export {
   Loading,
@@ -128,4 +130,6 @@ export {
   FacilityTable,
   FacilityCreate,
   FacilityEdit,
+  RegionDescription,
+  RegionFacilityTable,
 };

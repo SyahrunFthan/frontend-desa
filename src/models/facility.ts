@@ -9,6 +9,9 @@ export interface FacilityModel {
   longitude: number;
   description: string;
   status: string;
+  region_id: string;
+  image: string;
+  path_image: string;
 }
 
 export interface FacilityTableParams {
@@ -24,6 +27,9 @@ export const facilityState: FacilityModel = {
   longitude: 0,
   description: "",
   status: "",
+  region_id: "",
+  image: "",
+  path_image: "",
 };
 
 export const type_facilities: Option[] = [

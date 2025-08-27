@@ -9,6 +9,7 @@ export interface RegionModel {
   color: string;
   land_area: string;
   leader: EmployeeModel;
+  createdAt?: string;
 }
 
 export interface RegionTableParams {

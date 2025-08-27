@@ -2,7 +2,10 @@
   "dashboard": "Dashboard",
   "resident": "Resident",
   "family card": "Family Card",
-  "employee": "Employee",
+  "employee": {
+    "title": "Employee",
+    "fullname": "Full Name"
+  },
   "user": "User",
   "role": "Role",
   "incoming letter": "Incoming Letter",
@@ -31,7 +34,11 @@
     "geo_json": "Geo Json",
     "is_draw": "Create Your Own Line?",
     "detail": {
-      "title": "Hemlet Detail"
+      "title": "Detail",
+      "registration_at": "Registration",
+      "total_facility": "Total Facility",
+      "total_resident": "Total Resident",
+      "leader": "Leader"
     }
   },
   "income": "Income",
@@ -110,7 +117,8 @@
     "description": "Description",
     "latitude": "Latitude",
     "longitude": "Longitude",
-    "location": "Location"
+    "location": "Location",
+    "region_id": "Select Region (Optional)"
   },
   "news": "News",
   "village": "Village Profile",

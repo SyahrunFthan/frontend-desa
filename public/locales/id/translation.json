@@ -2,7 +2,10 @@
   "dashboard": "Beranda",
   "resident": "Penduduk",
   "family card": "Kartu Keluarga",
-  "employee": "Aparatur",
+  "employee": {
+    "title": "Aparatur",
+    "fullname": "Nama Lengkap"
+  },
   "user": "Pengguna",
   "role": "Peran",
   "incoming letter": "Surat Masuk",
@@ -29,7 +32,14 @@
     "land_area": "Luas Dusun",
     "color": "Warna",
     "geo_json": "Geo JSON",
-    "is_draw": "Buat Garis Sendiri?"
+    "is_draw": "Buat Garis Sendiri?",
+    "detail": {
+      "title": "Detail",
+      "registration_at": "Tanggal Registrasi",
+      "total_facility": "Total Fasilitas",
+      "total_resident": "Total Penduduk",
+      "leader": "Kepala Dusun"
+    }
   },
   "income": "Pendapatan",
   "expend": "Pengeluaran",
@@ -107,7 +117,8 @@
     "description": "Deskripsi",
     "latitude": "Latitude",
     "longitude": "Longitude",
-    "location": "Lokasi"
+    "location": "Lokasi",
+    "region_id": "Pilih Dusun (Optional)"
   },
   "report": "Laporan",
   "gallery": "Galeri",

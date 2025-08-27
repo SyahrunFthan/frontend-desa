@@ -1,4 +1,4 @@
-import type { FormInstance } from "antd";
+import type { FormInstance, UploadFile } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import {
@@ -10,13 +10,16 @@ import {
 } from "../helpers/process";
 import { createEmployee, deleteEmployee, updateEmployee } from "../apis";
 import type { AxiosError } from "axios";
+import type { Dispatch, SetStateAction } from "react";
+import { employeeState, type EmployeeModel } from "../models/employee";
 
 interface CreateProps {
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
   form: FormInstance;
   data: FormData;
-  setProcessing: (value: boolean) => void;
+  setProcessing: Dispatch<SetStateAction<boolean>>;
+  setFile: Dispatch<SetStateAction<UploadFile[] | null>>;
   fetchData: () => void;
 }
 
@@ -27,6 +30,7 @@ export const employeeCreated = async ({
   notificationApi,
   setProcessing,
   fetchData,
+  setFile,
 }: CreateProps) => {
   try {
     setProcessing(true);
@@ -40,6 +44,7 @@ export const employeeCreated = async ({
         () => {
           form.resetFields();
           fetchData();
+          setFile(null);
         }
       );
     }
@@ -69,9 +74,10 @@ interface UpdateProps {
   form: FormInstance;
   data: FormData;
   id: string;
-  setId: (id: string) => void;
-  setOpenDrawer: (open: boolean) => void;
-  setProcessing: (val: boolean) => void;
+  setProcessing: Dispatch<SetStateAction<boolean>>;
+  setFile: Dispatch<SetStateAction<UploadFile[] | null>>;
+  setRecord: Dispatch<SetStateAction<EmployeeModel>>;
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
   fetchData: () => void;
 }
 
@@ -81,10 +87,11 @@ export const employeeUpdated = async ({
   id,
   messageApi,
   notificationApi,
-  setId,
+  setRecord,
   setOpenDrawer,
   setProcessing,
   fetchData,
+  setFile,
 }: UpdateProps) => {
   try {
     setProcessing(true);
@@ -96,10 +103,11 @@ export const employeeUpdated = async ({
         "employeeUpdated",
         response.data.message || "Success",
         () => {
-          setId("");
+          form.resetFields();
+          setRecord(employeeState);
           setOpenDrawer(false);
           fetchData();
-          form.resetFields();
+          setFile(null);
         }
       );
     }
@@ -133,7 +141,7 @@ interface DeleteProps {
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
   id: string;
-  setProcessing: (val: boolean) => void;
+  setProcessing: Dispatch<SetStateAction<boolean>>;
   fetchData: () => void;
 }
 

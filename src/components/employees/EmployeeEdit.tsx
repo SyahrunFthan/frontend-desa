@@ -9,7 +9,6 @@ import {
   Select,
   Switch,
   Upload,
-  type FormInstance,
   type FormProps,
   type UploadFile,
   type UploadProps,
@@ -18,39 +17,35 @@ import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import { genders, positions, religions } from "../../models/global";
 import { UploadOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { employeeUpdated } from "../../services/employee";
+import { employeeState, type EmployeeModel } from "../../models/employee";
+import dayjs from "dayjs";
 
 interface Props {
-  form: FormInstance;
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
-  id: string;
   openDrawer: boolean;
-  setOpenDrawer: (open: boolean) => void;
-  setId: (id: string) => void;
+  setOpenDrawer: Dispatch<SetStateAction<boolean>>;
+  record: EmployeeModel;
+  setRecord: Dispatch<SetStateAction<EmployeeModel>>;
   fetchData: () => void;
-  file: UploadFile[] | null;
-  signature: UploadFile[] | null;
-  setSignature: (signature: UploadFile[] | null) => void;
-  setFile: (file: UploadFile[] | null) => void;
 }
 
 const EmployeeEdit = ({
   fetchData,
-  form,
-  id,
   messageApi,
   notificationApi,
-  setId,
   openDrawer,
   setOpenDrawer,
-  setFile,
-  file,
-  signature,
-  setSignature,
+  record,
+  setRecord,
 }: Props) => {
+  const [file, setFile] = useState<UploadFile[] | null>(null);
+  const [signature, setSignature] = useState<UploadFile[] | null>(null);
   const [processing, setProcessing] = useState(false);
+  const [form] = Form.useForm();
+  const isStructure = Form.useWatch("is_structure", form);
 
   const handleChangeFile: UploadProps["onChange"] = ({ fileList }) => {
     setFile(fileList);
@@ -69,7 +64,7 @@ const EmployeeEdit = ({
     formData.append("place_of_birth", values.place_of_birth ?? "");
     formData.append("date_of_birth", values.date_of_birth ?? "");
     formData.append("is_structure", String(values.is_structure ?? false));
-    formData.append("id", id);
+    formData.append("id", record.id);
 
     const level =
       values.is_structure && values.position_official
@@ -91,16 +86,66 @@ const EmployeeEdit = ({
 
     employeeUpdated({
       data: formData,
+      id: record.id,
       form,
       fetchData,
-      id,
       messageApi,
       notificationApi,
-      setId,
       setOpenDrawer,
+      setFile,
       setProcessing,
+      setRecord,
     });
   };
+
+  useEffect(() => {
+    if (isStructure) {
+      form.setFieldsValue({ position: "" });
+    }
+
+    if (isStructure && record.level == 0) {
+      form.setFieldsValue({ position: record.position });
+    }
+  }, [isStructure]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      ...record,
+      ...(record.level !== 0
+        ? {
+            position_official: {
+              value: record.level,
+              label: record.position,
+            },
+          }
+        : {}),
+      date_of_birth: dayjs(record.date_of_birth, "YYYY-MM-DD"),
+    });
+
+    setFile(
+      record.image
+        ? [
+            {
+              uid: record.id,
+              name: record.image,
+              url: record.path_image,
+            } as UploadFile,
+          ]
+        : null
+    );
+
+    setSignature(
+      record.signature_file
+        ? [
+            {
+              uid: record.id,
+              name: record.signature_file,
+              url: record.signature_path,
+            } as UploadFile,
+          ]
+        : null
+    );
+  }, [record, form]);
 
   return (
     <Drawer title="Edit Employee" open={openDrawer} closable={false}>
@@ -126,7 +171,7 @@ const EmployeeEdit = ({
           <Input placeholder="Ex: Palu" />
         </Form.Item>
         <Form.Item name={"date_of_birth"} label="Date Of Birth" required>
-          <DatePicker />
+          <DatePicker className="w-full" />
         </Form.Item>
         <Form.Item
           name={"is_structure"}
@@ -169,7 +214,7 @@ const EmployeeEdit = ({
             <Button icon={<UploadOutlined />}>Upload Image</Button>
           </Upload>
         </Form.Item>
-        <Form.Item name={"file"} label="Choose Signature">
+        <Form.Item name={"signature"} label="Choose Signature">
           <Upload
             accept="image/*"
             beforeUpload={() => false}
@@ -199,7 +244,7 @@ const EmployeeEdit = ({
                 form.resetFields();
                 setFile(null);
                 setSignature(null);
-                setId("");
+                setRecord(employeeState);
                 setOpenDrawer(false);
               }}
             >

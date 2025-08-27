@@ -17,6 +17,8 @@ import {
 import { getFacility } from "../../../apis";
 import type { AxiosError } from "axios";
 import { processFail } from "../../../helpers/process";
+import type { Option } from "../../../models/global";
+import type { RegionModel } from "../../../models/region";
 
 const Facility = () => {
   const [tableParams, setTableParams] = useState<FacilityTableParams>({
@@ -36,6 +38,7 @@ const Facility = () => {
   const [openCreate, setOpenCreate] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [record, setRecord] = useState<FacilityModel>(facilityState);
+  const [optionRegion, setOptionRegion] = useState<Option[]>([]);
   const [messageApi, contextHolder] = message.useMessage();
   const [notificationApi, contextHolderN] = notification.useNotification();
   const { t } = useTranslation();
@@ -48,7 +51,17 @@ const Facility = () => {
         pageSize: tableParams.pagination?.pageSize || 5,
         search: tableParams.search || "",
       });
-      const { total, facilities } = response.data;
+      const { total, facilities, regions } = response.data;
+      const regionOptions = regions.map(
+        (item: Pick<RegionModel, "id" | "name">) => {
+          return {
+            label: item.name,
+            value: item.id,
+          };
+        }
+      );
+
+      setOptionRegion(regionOptions);
       setDataSource(facilities);
       setTableParams((prev) => ({
         ...prev,
@@ -124,6 +137,7 @@ const Facility = () => {
           fetchData={fetchData}
           messageApi={messageApi}
           notificationApi={notificationApi}
+          optionRegion={optionRegion}
         />
       </Drawer>
 
@@ -143,6 +157,7 @@ const Facility = () => {
             setOpenDrawer={setOpenEdit}
             setRecord={setRecord}
             t={t}
+            optionRegion={optionRegion}
           />
         </Drawer>
       )}

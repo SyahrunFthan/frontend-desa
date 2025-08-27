@@ -50,7 +50,7 @@ export const regionColumns = ({
       key: "leader_id",
       title: t("region.leader"),
       dataIndex: ["leader", "fullname"],
-      sorter: (a, b) => a.leader.fullname.localeCompare(b.leader.fullname),
+      sorter: (a, b) => a.leader?.fullname.localeCompare(b.leader?.fullname),
       sortDirections: ["ascend", "descend"],
     },
     {

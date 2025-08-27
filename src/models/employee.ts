@@ -30,3 +30,20 @@ export interface EmployeeTableParams {
   pagination?: TablePaginationConfig;
   filters?: EmployeeFilters;
 }
+
+export const employeeState: EmployeeModel = {
+  date_of_birth: "",
+  employee_id: "",
+  fullname: "",
+  gender: "",
+  id: "",
+  image: "",
+  is_structure: false,
+  level: 0,
+  path_image: "",
+  place_of_birth: "",
+  position: "",
+  religion: "",
+  signature_file: "",
+  signature_path: "",
+};

@@ -8,10 +8,8 @@ function isLonLat(geojson: any): boolean {
     geojson,
     (coord) => {
       const [x, y] = coord as [number, number];
-      // kalau ada yang di luar rentang lon/lat, berarti bukan WGS84
       if (Math.abs(x) > 180 || Math.abs(y) > 90) ok = false;
       checked++;
-      // sampel secukupnya biar cepat
       if (checked > 2000) return false;
     },
     false
@@ -36,7 +34,7 @@ function ringAreaPlanar(r: Ring): number {
   for (let i = 0; i < ring.length - 1; i++) {
     a += ring[i][0] * ring[i + 1][1] - ring[i + 1][0] * ring[i][1];
   }
-  return 0.5 * a; // bertanda; CCW positif
+  return 0.5 * a;
 }
 
 function polygonAreaPlanarM2(coords: Ring[]): number {
@@ -48,14 +46,11 @@ function polygonAreaPlanarM2(coords: Ring[]): number {
   return Math.max(0, outer - holes);
 }
 
-/** Hitung luas geojson dalam km², otomatis pilih metode (geodesic vs planar) */
 export function geojsonAreaKm2(geojson: any): number {
   if (!geojson) return 0;
   if (isLonLat(geojson)) {
-    // Koordinat derajat → pakai Turf geodesic
     return turfArea(geojson) / 1_000_000;
   }
-  // Koordinat meter → planar shoelace
   let totalM2 = 0;
   flattenEach(geojson, (feature) => {
     const geom = feature.geometry;

@@ -16,7 +16,6 @@ import type { AssistanceCategoryModel } from "../models/assistanceCategory";
 import type { SocialAssistanceModel } from "../models/socialAssistance";
 import type { TaxModel } from "../models/tax";
 import type { DevelopmentModel } from "../models/development";
-import type { FacilityModel } from "../models/facility";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -435,6 +434,14 @@ export const getRegion = ({ current, pageSize, search }: QuerySearch) => {
 
   return API.get(`/region?${params.toString()}`);
 };
+export const getRegionId = ({ current, pageSize, search, id }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", String(search));
+
+  return API.get(`/region/${id}?${params.toString()}`);
+};
 export const createRegion = (data: Omit<RegionModel, "id" | "leader">) => {
   return API.post("/region", data);
 };
@@ -675,11 +682,21 @@ export const getFacility = ({ current, pageSize, search }: QuerySearch) => {
 
   return API.get(`/facility?${params.toString()}`);
 };
-export const createFacility = (data: Omit<FacilityModel, "id">) => {
-  return API.post("/facility", data);
+export const createFacility = (data: FormData) => {
+  return API.post("/facility", data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
-export const updateFacility = (id: string, data: Omit<FacilityModel, "id">) => {
-  return API.put(`/facility/${id}`, data);
+export const updateFacility = (id: string, data: FormData) => {
+  return API.put(`/facility/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 export const deleteFacility = (id: string) => {
   return API.delete(`/facility/${id}`);

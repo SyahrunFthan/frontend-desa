@@ -57,7 +57,7 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "employee",
         icon: <UsergroupAddOutlined />,
-        label: t("employee"),
+        label: t("employee.title"),
         path: "/admin/employees",
       },
       {

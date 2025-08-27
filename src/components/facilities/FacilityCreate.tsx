@@ -1,20 +1,32 @@
-import { Button, Flex, Form, Input, InputNumber, Select } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  Input,
+  InputNumber,
+  Select,
+  Upload,
+  type UploadFile,
+} from "antd";
 import type { TFunction } from "i18next";
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { type_facilities } from "../../models/facility";
-import { status } from "../../models/global";
+import { status, type Option } from "../../models/global";
 import MapView from "../maps/MapView";
 import { facilityCreated } from "../../services/facility";
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import DrawControl from "../maps/DrawControl";
 import AutoCenter from "../maps/AutoCenter";
+import { UploadOutlined } from "@ant-design/icons";
 
 interface Props {
   t: TFunction;
   setOpenDrawer: Dispatch<SetStateAction<boolean>>;
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
+  optionRegion?: Option[] | undefined;
+  region_id?: string;
   fetchData: () => void;
 }
 
@@ -24,8 +36,11 @@ const FacilityCreate = ({
   fetchData,
   messageApi,
   notificationApi,
+  optionRegion,
+  region_id,
 }: Props) => {
   const [processing, setProcessing] = useState(false);
+  const [file, setFile] = useState<UploadFile[] | null>(null);
   const [form] = Form.useForm();
   const [location, setLocation] = useState({
     latitude: 0,
@@ -37,23 +52,32 @@ const FacilityCreate = ({
       form={form}
       layout="vertical"
       onFinish={(values) => {
-        const data = {
-          name: values.name ?? "",
-          type_facility: values.type_facility ?? "",
-          status: values.status ?? "",
-          description: values.description ?? "",
-          latitude: values.latitude ?? 95,
-          longitude: values.longitude ?? 185,
-        };
+        const formData = new FormData();
+
+        formData.append("name", values.name ?? "");
+        formData.append("type_facility", values.type_facility ?? "");
+        formData.append("status", values.status ?? "");
+        formData.append("description", values.description ?? "");
+        formData.append("latitude", String(values.latitude ?? 95));
+        formData.append("longitude", String(values.longitude ?? 185));
+        formData.append(
+          "region_id",
+          region_id ? region_id : values.region_id ?? ""
+        );
+
+        if (file?.length && file[0].originFileObj) {
+          formData.append("file", file[0].originFileObj);
+        }
 
         facilityCreated({
-          data,
+          data: formData,
           fetchData,
           form,
           messageApi,
           notificationApi,
           setOpenDrawer,
           setProcessing,
+          setFile,
         });
       }}
     >
@@ -70,6 +94,11 @@ const FacilityCreate = ({
       <Form.Item name={"status"} label={t("facility.status")} required>
         <Select options={status} />
       </Form.Item>
+      {optionRegion !== undefined && (
+        <Form.Item name={"region_id"} label={t("facility.region_id")}>
+          <Select options={optionRegion} allowClear />
+        </Form.Item>
+      )}
       <Form.Item name={"description"} label={t("facility.description")}>
         <Input.TextArea />
       </Form.Item>
@@ -78,6 +107,22 @@ const FacilityCreate = ({
       </Form.Item>
       <Form.Item name={"longitude"} label={t("facility.longitude")} required>
         <InputNumber controls={false} className="w-full" disabled />
+      </Form.Item>
+      <Form.Item name={"file"} label={t("facility.file_upload")}>
+        <Upload
+          fileList={file ?? []}
+          showUploadList
+          multiple={false}
+          maxCount={1}
+          beforeUpload={() => false}
+          accept="image/*"
+          listType="picture"
+          onChange={(info) => {
+            setFile(info.fileList);
+          }}
+        >
+          <Button icon={<UploadOutlined />}>Upload File</Button>
+        </Upload>
       </Form.Item>
       <Form.Item name={"latitude"} label={t("facility.location")} required>
         <MapView>
@@ -121,6 +166,7 @@ const FacilityCreate = ({
             htmlType="reset"
             onClick={() => {
               form.resetFields();
+              setFile(null);
               setOpenDrawer(false);
               setLocation({
                 latitude: 0,

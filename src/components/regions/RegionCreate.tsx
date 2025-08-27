@@ -26,7 +26,7 @@ import { regionCreated } from "../../services/region";
 import { GeoJSON } from "react-leaflet";
 import { geojsonAreaKm2 } from "../../helpers/area";
 import MapView from "../maps/MapView";
-import DrawControl from "../maps/DrawControl";
+import DrawPolygon from "../maps/DrawPolygon";
 
 interface Props {
   messageApi: MessageInstance;
@@ -202,7 +202,7 @@ const RegionCreate = ({
           <div className="flex flex-col">
             <MapView>
               {isDraw && (
-                <DrawControl
+                <DrawPolygon
                   key={drawKey}
                   onChangeGeoJson={(value) =>
                     form.setFieldsValue({ geo_json: value })

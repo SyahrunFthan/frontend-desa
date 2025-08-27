@@ -1,13 +1,6 @@
 import AdminLayout from "../../../layouts/adminLayout";
 import { DashboardOutlined } from "@ant-design/icons";
-import {
-  Form,
-  message,
-  notification,
-  Tabs,
-  type TabsProps,
-  type UploadFile,
-} from "antd";
+import { message, notification, Tabs, type TabsProps } from "antd";
 import { Link } from "react-router-dom";
 import {
   EmployeeCreate,
@@ -15,9 +8,10 @@ import {
   EmployeeList,
 } from "../../../components";
 import { useEffect, useState } from "react";
-import type {
-  EmployeeModel,
-  EmployeeTableParams,
+import {
+  employeeState,
+  type EmployeeModel,
+  type EmployeeTableParams,
 } from "../../../models/employee";
 import { getEmployee } from "../../../apis";
 import type { AxiosError } from "axios";
@@ -45,13 +39,10 @@ const Employee = () => {
   });
   const [loading, setLoading] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [id, setId] = useState("");
   const [dataSource, setDataSource] = useState<EmployeeModel[]>([]);
-  const [signature, setSignature] = useState<UploadFile[] | null>(null);
-  const [file, setFile] = useState<UploadFile[] | null>(null);
+  const [record, setRecord] = useState<EmployeeModel>(employeeState);
   const [messageApi, contextHolder] = message.useMessage();
   const [notificationApi, contextHolderN] = notification.useNotification();
-  const [formEdit] = Form.useForm();
 
   const fetchData = async () => {
     try {
@@ -103,14 +94,11 @@ const Employee = () => {
           loading={loading}
           setTableParams={setTableParams}
           tableParams={tableParams}
-          formEdit={formEdit}
           messageApi={messageApi}
           notificationApi={notificationApi}
-          setId={setId}
           setOpenDrawer={setOpenDrawer}
-          setSignature={setSignature}
-          setFile={setFile}
           fetchData={fetchData}
+          setRecord={setRecord}
         />
       ),
     },
@@ -156,17 +144,12 @@ const Employee = () => {
       {openDrawer && (
         <EmployeeEdit
           fetchData={fetchData}
-          form={formEdit}
-          id={id}
-          setId={setId}
           setOpenDrawer={setOpenDrawer}
           messageApi={messageApi}
           notificationApi={notificationApi}
           openDrawer={openDrawer}
-          file={file}
-          setFile={setFile}
-          signature={signature}
-          setSignature={setSignature}
+          record={record}
+          setRecord={setRecord}
         />
       )}
     </AdminLayout>
