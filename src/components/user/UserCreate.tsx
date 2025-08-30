@@ -43,7 +43,6 @@ const UserCreate = ({
           const selfData = {
             email: values.email || "",
             username: values.username || "",
-            password: values.password || "",
             role_id: values.role_id || "",
             resident_id: values.resident_id || "",
           };
@@ -72,9 +71,6 @@ const UserCreate = ({
           ]}
         >
           <Input placeholder="Ex: 028312" />
-        </Form.Item>
-        <Form.Item name={"password"} label="Password:" required>
-          <Input />
         </Form.Item>
         <Form.Item name={"role_id"} label="Role ID:" required>
           <Select options={roleOptions} />

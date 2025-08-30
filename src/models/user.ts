@@ -1,5 +1,6 @@
 import type { TablePaginationConfig } from "antd";
 import type { RoleModel } from "./role";
+import type { ResidentModel } from "./resident";
 
 export interface UserModel {
   id: string;
@@ -11,10 +12,13 @@ export interface UserModel {
   resident_id: string;
 }
 
+export interface Users extends UserModel {
+  resident?: ResidentModel;
+}
+
 export interface UserForm {
   email: string;
   username: string;
-  password: string;
   role_id: string;
   resident_id: string;
 }

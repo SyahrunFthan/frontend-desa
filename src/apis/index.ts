@@ -16,8 +16,14 @@ import type { AssistanceCategoryModel } from "../models/assistanceCategory";
 import type { SocialAssistanceModel } from "../models/socialAssistance";
 import type { TaxModel } from "../models/tax";
 import type { DevelopmentModel } from "../models/development";
+import type { VillageModel } from "../models/village";
 
 const API = axios.create({
+  baseURL: "http://localhost:5001",
+  withCredentials: true,
+});
+
+const GUEST_API = axios.create({
   baseURL: "http://localhost:5001",
   withCredentials: true,
 });
@@ -704,7 +710,7 @@ export const deleteFacility = (id: string) => {
 
 // Guest Router
 export const getSocialAssistanceByResidentId = (search: string) => {
-  return API.get(`/guest/social-assistance?search=${search}`);
+  return GUEST_API.get(`/guest/social-assistance?search=${search}`);
 };
 export const getStatisticResident = ({
   current,
@@ -716,17 +722,97 @@ export const getStatisticResident = ({
   params.set("page_size", String(pageSize));
   params.set("search", search);
 
-  return API.get(`/guest/statistic-resident?${params.toString()}`);
+  return GUEST_API.get(`/guest/statistic-resident?${params.toString()}`);
 };
 export const getStatisticJob = () => {
-  return API.get("/guest/statistic-job");
+  return GUEST_API.get("/guest/statistic-job");
 };
 export const getStatisticGender = () => {
-  return API.get("/guest/statistic-gender");
+  return GUEST_API.get("/guest/statistic-gender");
 };
 export const getStatisticReligion = () => {
-  return API.get("/guest/statistic-religion");
+  return GUEST_API.get("/guest/statistic-religion");
 };
 export const getStatisticAgeGroup = () => {
-  return API.get("/guest/statistic-age");
+  return GUEST_API.get("/guest/statistic-age");
+};
+
+// Village
+export const getVillage = () => {
+  return API.get("/village");
+};
+export const updateLogo = (id: string, data: FormData) => {
+  return API.patch(`/village/update/logo/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const updateImage = (id: string, data: FormData) => {
+  return API.patch(`/village/update/image/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const updateVission = (
+  id: string,
+  data: Pick<VillageModel, "vission" | "mission">
+) => {
+  return API.put(`/village/update/vission/${id}`, data);
+};
+export const updateAbout = (
+  id: string,
+  data: Pick<VillageModel, "name" | "about" | "history">
+) => {
+  return API.put(`/village/update/about/${id}`, data);
+};
+
+// news
+export const getNews = ({ current, pageSize, search }: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/news?${params.toString()}`);
+};
+export const getNewsDetail = ({
+  current,
+  pageSize,
+  search,
+  id,
+}: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/news/${id}?${params.toString()}`);
+};
+export const createNews = (data: FormData) => {
+  return API.post("/news", data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const updateNews = (id: string, data: FormData) => {
+  return API.patch(`/news/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const deleteNews = (id: string) => {
+  return API.delete(`/news/${id}`);
+};
+
+// Comment NEws
+export const deleteCommentNews = (id: string) => {
+  return API.delete(`/comment-news/${id}`);
 };

@@ -72,6 +72,13 @@ export interface ItemStatistic {
   icon: ReactElement;
 }
 
+export interface StepItemType {
+  key: string;
+  title: string;
+  children: ReactNode;
+  description: String;
+}
+
 export const religions = [
   {
     label: "Islam",

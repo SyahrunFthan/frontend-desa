@@ -68,7 +68,8 @@ export function processSuccessN(
 export function processFail(
   api: MessageInstance,
   key: string,
-  content: string
+  content: string,
+  extra?: () => void
 ) {
   setTimeout(() => {
     api.open({
@@ -76,6 +77,9 @@ export function processFail(
       type: "error",
       content: content,
       duration: 1.5,
+      onClose: () => {
+        extra?.();
+      },
     });
   }, 500);
 }

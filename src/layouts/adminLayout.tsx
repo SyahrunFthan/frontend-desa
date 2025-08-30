@@ -33,7 +33,6 @@ interface Props {
 
 const AdminLayout: React.FC<Props> = ({
   children,
-  title = "",
   pageName = "",
   breadCrumbs,
 }) => {
@@ -50,7 +49,7 @@ const AdminLayout: React.FC<Props> = ({
   const [notificationApi, contextHolderN] = notification.useNotification();
   const [processing, setProcessing] = useState(false);
   const navigate = useNavigate();
-  const { t, i18n: i18next } = useTranslation();
+  const { i18n: i18next } = useTranslation();
 
   const handleLogout = async () => {
     userLogout({
@@ -109,11 +108,7 @@ const AdminLayout: React.FC<Props> = ({
             )}
             <Breadcrumb
               style={{ margin: "16px 0", fontSize: 16 }}
-              items={
-                breadCrumbs && breadCrumbs.length > 0
-                  ? breadCrumbs
-                  : [{ title: t("dashboard") }, { title: title }]
-              }
+              items={breadCrumbs && breadCrumbs.length > 0 ? breadCrumbs : []}
             />
             <main className="flex-1 overflow-y-auto p-4 overflow-x-hidden">
               {children}

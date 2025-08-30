@@ -55,8 +55,19 @@ export const userLogin = async ({
     const axiosError = error as AxiosError<{ message: string }>;
     if (axiosError?.response?.status == 400) {
       processErrorN(notificationApi, "userLogin", form, axiosError);
+    } else if (axiosError.response?.status === 409) {
+      processFail(
+        messageApi,
+        "userLogin",
+        axiosError.response?.data?.message || "Conflict",
+        () => {
+          form.resetFields();
+        }
+      );
     } else {
-      processFail(messageApi, "userLogin", "Login Failed");
+      processFail(messageApi, "userLogin", "Login Failed", () => {
+        form.resetFields();
+      });
     }
   } finally {
     processFinish(messageApi, () => {

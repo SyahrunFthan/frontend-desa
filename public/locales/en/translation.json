@@ -120,8 +120,39 @@
     "location": "Location",
     "region_id": "Select Region (Optional)"
   },
-  "news": "News",
-  "village": "Village Profile",
+  "news": {
+    "title": "News",
+    "list": "List of News",
+    "create": "Create Data",
+    "createOf": "Create of News",
+    "edit": "Edit of News",
+    "title_news": "Title",
+    "content": "Content",
+    "choose_image": "Choose Image",
+    "image": "Image",
+    "summary": "Summary",
+    "author": "Author",
+    "date_of_issue": "Date of Issue",
+    "status": "Status",
+    "detail": {
+      "title": "Detail Content",
+      "comment": {
+        "title": "Comment of News",
+        "list": "List of Comment News"
+      }
+    }
+  },
+  "village": {
+    "title": "Village Profile",
+    "title_logo": "Management Logo",
+    "title_other": "Vision & Mission",
+    "title_image": "Management Photo",
+    "title_about": "About & History",
+    "vission": "Vission",
+    "mission": "Mission",
+    "about": "About",
+    "history": "History"
+  },
   "change password": "Change Password",
   "sign out": "Sign Out",
   "create": "Create",

@@ -202,13 +202,13 @@ export const menuItems = (t: TFunction): Item[] => [
       {
         key: "news",
         icon: <BookOutlined />,
-        label: t("news"),
+        label: t("news.title"),
         path: "/admin/news",
       },
       {
         key: "village",
         icon: <BankOutlined />,
-        label: t("village"),
+        label: t("village.title"),
         path: "/admin/villages",
       },
       {

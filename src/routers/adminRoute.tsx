@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import {
   Activity,
   Dashboard,
+  DetailNews,
   Development,
   Employee,
   Expense,
@@ -10,6 +11,7 @@ import {
   FamilyCardDetail,
   Income,
   IncomingLetter,
+  News,
   OutgoingLetter,
   Period,
   PeriodDetail,
@@ -23,6 +25,7 @@ import {
   SocialAssistance,
   Tax,
   User,
+  Village,
 } from "../pages";
 import { getItem } from "../helpers/storage";
 
@@ -66,6 +69,11 @@ const AdminRoute = () => {
       <Route path="taxes" element={<Tax />} />
       <Route path="developments" element={<Development />} />
       <Route path="activities" element={<Activity />} />
+      <Route path="villages" element={<Village />} />
+
+      {/* System */}
+      <Route path="news" element={<News />} />
+      <Route path="news/:id" element={<DetailNews />} />
     </Routes>
   );
 };

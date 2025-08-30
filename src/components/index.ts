@@ -64,6 +64,15 @@ import FacilityCreate from "./facilities/FacilityCreate";
 import FacilityEdit from "./facilities/FacilityEdit";
 import RegionDescription from "./regions/RegionDescription";
 import RegionFacilityTable from "./regions/RegionFacilityTable";
+import VillageLogo from "./villages/VillageLogo";
+import VillagePhoto from "./villages/VillagePhoto";
+import VillageFormVision from "./villages/VillageFormVision";
+import VillageFormAbout from "./villages/VillageFormAbout";
+import NewsTable from "./news/NewsTable";
+import NewsCreate from "./news/NewsCreate";
+import NewsEdit from "./news/NewsEdit";
+import NewsDetailContent from "./news/NewsDetailContent";
+import NewsDetailComment from "./news/NewsDetailComment";
 
 export {
   Loading,
@@ -132,4 +141,13 @@ export {
   FacilityEdit,
   RegionDescription,
   RegionFacilityTable,
+  VillageLogo,
+  VillagePhoto,
+  VillageFormVision,
+  VillageFormAbout,
+  NewsTable,
+  NewsCreate,
+  NewsEdit,
+  NewsDetailContent,
+  NewsDetailComment,
 };
