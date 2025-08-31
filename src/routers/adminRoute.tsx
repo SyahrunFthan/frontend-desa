@@ -23,6 +23,7 @@ import {
   RWUnit,
   Service,
   SocialAssistance,
+  SubmissionService,
   Tax,
   User,
   Village,
@@ -49,6 +50,7 @@ const AdminRoute = () => {
       {/* Letter */}
       <Route path="incoming-letters" element={<IncomingLetter />} />
       <Route path="outgoing-letters" element={<OutgoingLetter />} />
+      <Route path="submission-services" element={<SubmissionService />} />
 
       {/* APBDES */}
       <Route path="periods" element={<Period />} />

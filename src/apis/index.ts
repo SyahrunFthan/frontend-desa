@@ -17,6 +17,7 @@ import type { SocialAssistanceModel } from "../models/socialAssistance";
 import type { TaxModel } from "../models/tax";
 import type { DevelopmentModel } from "../models/development";
 import type { VillageModel } from "../models/village";
+import type { SubmissionServiceModel } from "../models/submissionService";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -815,4 +816,49 @@ export const deleteNews = (id: string) => {
 // Comment NEws
 export const deleteCommentNews = (id: string) => {
   return API.delete(`/comment-news/${id}`);
+};
+
+// Submission Services
+export const getSubmissionService = ({
+  current,
+  pageSize,
+  filters = {},
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== undefined || value !== null || value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/submission-service?${params.toString()}`);
+};
+export const getSubmissionServiceHistory = ({
+  current,
+  pageSize,
+  filters = {},
+}: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== undefined || value !== null || value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/submission-service/history?${params.toString()}`);
+};
+export const updateStatusSubmissionService = (
+  id: string,
+  data: Pick<SubmissionServiceModel, "code" | "status_submission" | "note">
+) => {
+  return API.put(`/submission-service/${id}`, data);
+};
+export const deleteSubmissionService = (id: string) => {
+  return API.delete(`/submission-service/${id}`);
 };

@@ -10,7 +10,17 @@
   "role": "Role",
   "incoming letter": "Incoming Letter",
   "outgoing letter": "Outgoing Letter",
-  "submission service": "Service Submission",
+  "submissionService": {
+    "title": "Submission Service",
+    "list": "List of Submission Service",
+    "historyList": "List of History Submission Service",
+    "code": "Reference Number",
+    "status_submission": "Status",
+    "date_of_submission": "Date of Submission",
+    "resident_id": "Resident Name",
+    "service_id": "Service Name",
+    "reason": "Reason"
+  },
   "stall": "Stall",
   "service": {
     "title": "Public Service",

@@ -73,6 +73,8 @@ import NewsCreate from "./news/NewsCreate";
 import NewsEdit from "./news/NewsEdit";
 import NewsDetailContent from "./news/NewsDetailContent";
 import NewsDetailComment from "./news/NewsDetailComment";
+import SubmissionServiceTable from "./submission-services/SubmissionServiceTable";
+import SubmissionServiceHistoryTable from "./submission-services/SubmissionServiceHistoryTable";
 
 export {
   Loading,
@@ -150,4 +152,6 @@ export {
   NewsEdit,
   NewsDetailContent,
   NewsDetailComment,
+  SubmissionServiceTable,
+  SubmissionServiceHistoryTable,
 };
