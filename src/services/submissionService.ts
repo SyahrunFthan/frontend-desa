@@ -1,6 +1,5 @@
 import type { MessageInstance } from "antd/es/message/interface";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import type { SubmissionServiceModel } from "../models/submissionService";
 import type { FormInstance } from "antd";
 import type { Dispatch, SetStateAction } from "react";
 import {
@@ -20,7 +19,7 @@ import type { AxiosError } from "axios";
 interface UpdateStatusProps {
   messageApi: MessageInstance;
   notificationApi: NotificationInstance;
-  data: Pick<SubmissionServiceModel, "code" | "status_submission" | "note">;
+  data: FormData;
   form: FormInstance;
   id: string;
   setProcessing: Dispatch<SetStateAction<boolean>>;

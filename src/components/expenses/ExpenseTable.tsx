@@ -104,6 +104,7 @@ const ExpenseTable = ({
         size="middle"
         loading={loading}
         onChange={handleChangeTable}
+        bordered
       />
     </Card>
   );

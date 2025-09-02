@@ -10,7 +10,9 @@ import "./i18n.ts";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw";
 import "leaflet-draw/dist/leaflet.draw.css";
+import { pdfjs } from "react-pdf";
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 dayjs.locale("id");
 axios.defaults.withCredentials = true;
 

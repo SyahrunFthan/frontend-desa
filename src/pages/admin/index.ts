@@ -21,7 +21,9 @@ import RTUnit from "./rt-units";
 import RWUnit from "./rw-units";
 import Service from "./services";
 import SocialAssistance from "./social-assistances";
+import Stall from "./stalls";
 import SubmissionService from "./submission-services";
+import DetailSubmissionService from "./submission-services/detail";
 import Tax from "./taxes";
 import User from "./users";
 import Village from "./villages";
@@ -54,4 +56,6 @@ export {
   News,
   DetailNews,
   SubmissionService,
+  DetailSubmissionService,
+  Stall,
 };

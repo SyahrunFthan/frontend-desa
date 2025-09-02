@@ -1,16 +1,12 @@
-import { Button, Card, Descriptions, Typography } from "antd";
+import { Card, Descriptions, Typography } from "antd";
 import type { DescriptionsProps } from "antd/es/descriptions";
 import type { FamilyCardModel } from "../../models/familyCard";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 interface Props {
   familyCard: FamilyCardModel;
 }
 
 const FamilyCardDescription = ({ familyCard }: Props) => {
-  const { t } = useTranslation();
-  const navigate = useNavigate();
   const items: DescriptionsProps["items"] = [
     {
       label: "ID Family",
@@ -33,17 +29,7 @@ const FamilyCardDescription = ({ familyCard }: Props) => {
   ];
 
   return (
-    <Card
-      className="mb-5"
-      extra={
-        <Button
-          htmlType="button"
-          onClick={() => navigate("/admin/family-cards")}
-        >
-          {t("button.back")}
-        </Button>
-      }
-    >
+    <Card className="mb-5">
       <Typography.Title level={3}>Detail Family</Typography.Title>
       <Descriptions items={items} bordered size="middle" />
     </Card>

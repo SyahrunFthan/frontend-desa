@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import { searchColumns } from "./searchColumns";
 import { Link } from "react-router-dom";
-import { statusFamilies, type ResidentModel } from "../models/resident";
+import { statusFamilies, type Residents } from "../models/resident";
 import dayjs from "dayjs";
 import type { EditableCellProps, EditableColumn } from "../models/global";
 
@@ -130,6 +130,7 @@ const familyCardColumns = ({
               }}
             />
           </Tooltip>
+          {}
           <Popconfirm
             title="Confirm delete?"
             description={`Delete ${record.family_id}`}
@@ -173,7 +174,7 @@ export const editTableFamilyCardColumns = (
   });
 };
 
-export const residentFamilyColumns = (): ColumnsType<ResidentModel> => [
+export const residentFamilyColumns = (): ColumnsType<Residents> => [
   {
     key: "resident_id",
     title: "ID Resident",

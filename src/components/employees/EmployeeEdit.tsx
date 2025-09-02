@@ -42,17 +42,12 @@ const EmployeeEdit = ({
   setRecord,
 }: Props) => {
   const [file, setFile] = useState<UploadFile[] | null>(null);
-  const [signature, setSignature] = useState<UploadFile[] | null>(null);
   const [processing, setProcessing] = useState(false);
   const [form] = Form.useForm();
   const isStructure = Form.useWatch("is_structure", form);
 
   const handleChangeFile: UploadProps["onChange"] = ({ fileList }) => {
     setFile(fileList);
-  };
-
-  const handleChangeSignature: UploadProps["onChange"] = ({ fileList }) => {
-    setSignature(fileList);
   };
 
   const handleSubmit: FormProps["onFinish"] = (values) => {
@@ -78,10 +73,6 @@ const EmployeeEdit = ({
 
     if (file?.length && file[0]?.originFileObj) {
       formData.append("file", file[0].originFileObj);
-    }
-
-    if (signature?.length && signature[0]?.originFileObj) {
-      formData.append("signature", signature[0].originFileObj);
     }
 
     employeeUpdated({
@@ -129,18 +120,6 @@ const EmployeeEdit = ({
               uid: record.id,
               name: record.image,
               url: record.path_image,
-            } as UploadFile,
-          ]
-        : null
-    );
-
-    setSignature(
-      record.signature_file
-        ? [
-            {
-              uid: record.id,
-              name: record.signature_file,
-              url: record.signature_path,
             } as UploadFile,
           ]
         : null
@@ -214,20 +193,6 @@ const EmployeeEdit = ({
             <Button icon={<UploadOutlined />}>Upload Image</Button>
           </Upload>
         </Form.Item>
-        <Form.Item name={"signature"} label="Choose Signature">
-          <Upload
-            accept="image/*"
-            beforeUpload={() => false}
-            showUploadList
-            listType="picture"
-            multiple={false}
-            maxCount={1}
-            fileList={signature ?? []}
-            onChange={handleChangeSignature}
-          >
-            <Button icon={<UploadOutlined />}>Upload Image</Button>
-          </Upload>
-        </Form.Item>
         <Form.Item style={{ textAlign: "start" }}>
           <Flex gap="small">
             <Button
@@ -243,7 +208,6 @@ const EmployeeEdit = ({
               onClick={() => {
                 form.resetFields();
                 setFile(null);
-                setSignature(null);
                 setRecord(employeeState);
                 setOpenDrawer(false);
               }}

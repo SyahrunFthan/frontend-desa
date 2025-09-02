@@ -13,41 +13,61 @@
   "submissionService": {
     "title": "Submission Service",
     "list": "List of Submission Service",
-    "historyList": "List of History Submission Service",
+    "historyList": "Submission Service History",
     "code": "Reference Number",
     "status_submission": "Status",
-    "date_of_submission": "Date of Submission",
+    "date_of_submission": "Submission Date",
     "resident_id": "Resident Name",
     "service_id": "Service Name",
-    "reason": "Reason"
+    "reason": "Reason",
+    "detail": {
+      "title": "Submission Service Details"
+    }
   },
-  "stall": "Stall",
+  "stall": {
+    "title": "Stall Management",
+    "list": "List of Stall",
+    "resident_id": "Resident",
+    "category_id": "Category",
+    "status": "Status",
+    "name": "Stall Name",
+    "phone_number": "Phone Number",
+    "address": "Address"
+  },
+  "stall_category": {
+    "title": "Stall Categories",
+    "list": "List of Stall Category",
+    "name": "Category Name",
+    "description": "Description",
+    "icon": "Icon",
+    "choose_icon": "Select Icon"
+  },
   "service": {
     "title": "Public Service",
     "name": "Name",
     "type_service": "Category",
     "status_service": "Status",
-    "create": "Create",
-    "createOfService": "Create of Service",
+    "create": "Create Service",
+    "createOfService": "Create Public Service",
     "list": "List of Public Service",
-    "edit": "Edit of Public Service"
+    "edit": "Edit Public Service"
   },
   "region": {
     "title": "Hamlet Boundaries",
     "list": "List of Region",
-    "create": "Create",
-    "createOfRegion": "Create of Region",
+    "create": "Create Region",
+    "createOfRegion": "Create Region Data",
     "name": "Name",
     "leader": "Leader",
     "land_area": "Area",
     "color": "Color",
-    "geo_json": "Geo Json",
-    "is_draw": "Create Your Own Line?",
+    "geo_json": "GeoJSON",
+    "is_draw": "Draw Your Own Line?",
     "detail": {
-      "title": "Detail",
+      "title": "Details",
       "registration_at": "Registration",
-      "total_facility": "Total Facility",
-      "total_resident": "Total Resident",
+      "total_facility": "Total Facilities",
+      "total_resident": "Total Residents",
       "leader": "Leader"
     }
   },
@@ -56,14 +76,14 @@
   "social_assistance": {
     "title": "Social Assistance",
     "list": "List of Social Assistance",
-    "create": "Create Data",
-    "resident_id": "ID Resident",
+    "create": "Create Social Assistance",
+    "resident_id": "Resident ID",
     "assistance_id": "Category",
     "status_assistance": "Status",
     "month_of_aid": "Month",
-    "receipt_at": "Date of Receipt",
-    "edit": "Edit of Social Assistance",
-    "createOf": "Create of Social Assistance",
+    "receipt_at": "Receipt Date",
+    "edit": "Edit Social Assistance",
+    "createOf": "Create Social Assistance",
     "category": {
       "list": "List of Category",
       "name": "Name",
@@ -77,22 +97,22 @@
   "tax": {
     "title": "Tax",
     "list": "List of Tax",
-    "create": "Create",
+    "create": "Create Tax",
     "reference_number": "Reference Number",
     "taxpayer_name": "Taxpayer Name",
-    "resident_id": "ID Resident",
+    "resident_id": "Resident ID",
     "taxpayer_address": "Taxpayer Address",
-    "status": "Status Payment",
+    "status": "Payment Status",
     "amount": "Amount",
     "land_area": "Land Area",
     "building_area": "Building Area",
-    "edit": "Edit of Tax"
+    "edit": "Edit Tax"
   },
   "development": {
     "title": "Development",
     "list": "List of Development",
-    "create": "Create",
-    "createOf": "Create of Development",
+    "create": "Create Development",
+    "createOf": "Create Development Data",
     "name": "Development Name",
     "location": "Location",
     "latitude": "Latitude",
@@ -101,27 +121,27 @@
     "budget": "Budget",
     "source_of_fund": "Source of Fund",
     "year": "Year",
-    "start_at": "Start at",
-    "end_at": "End at",
+    "start_at": "Start Date",
+    "end_at": "End Date",
     "status": "Development Status"
   },
   "report": "Report",
   "activity": {
     "title": "Activity",
     "list": "List of Activity",
-    "createOf": "Create of Activity",
-    "name": "Name of Activity",
-    "date_of_activity": "Date of Activity",
+    "createOf": "Create Activity",
+    "name": "Activity Name",
+    "date_of_activity": "Activity Date",
     "location": "Location",
-    "file": "Choose Image"
+    "file": "Select Image"
   },
   "facility": {
     "title": "Facility",
     "list": "List of Facility",
-    "create": "Create Data",
-    "createOf": "Create of Facility",
-    "edit": "Edit of Facility",
-    "name": "Facility of Name",
+    "create": "Create Facility",
+    "createOf": "Create Facility Data",
+    "edit": "Edit Facility",
+    "name": "Facility Name",
     "type_facility": "Facility Type",
     "status": "Facility Status",
     "description": "Description",
@@ -133,46 +153,46 @@
   "news": {
     "title": "News",
     "list": "List of News",
-    "create": "Create Data",
-    "createOf": "Create of News",
-    "edit": "Edit of News",
+    "create": "Create News",
+    "createOf": "Create News Data",
+    "edit": "Edit News",
     "title_news": "Title",
     "content": "Content",
-    "choose_image": "Choose Image",
+    "choose_image": "Select Image",
     "image": "Image",
     "summary": "Summary",
     "author": "Author",
     "date_of_issue": "Date of Issue",
     "status": "Status",
     "detail": {
-      "title": "Detail Content",
+      "title": "Content Details",
       "comment": {
-        "title": "Comment of News",
-        "list": "List of Comment News"
+        "title": "News Comments",
+        "list": "List of News Comment"
       }
     }
   },
   "village": {
     "title": "Village Profile",
-    "title_logo": "Management Logo",
+    "title_logo": "Logo Management",
     "title_other": "Vision & Mission",
-    "title_image": "Management Photo",
+    "title_image": "Photo Management",
     "title_about": "About & History",
-    "vission": "Vission",
+    "vission": "Vision",
     "mission": "Mission",
     "about": "About",
     "history": "History"
   },
   "change password": "Change Password",
   "sign out": "Sign Out",
-  "create": "Create",
+  "create": "Create Data",
   "periods": "Period",
   "rt": {
     "title": "Neighborhood Association",
     "list": "List of Neighborhood Association",
     "code": "Code",
     "name_of_chairman": "Leader",
-    "rw_id": "Number Citizen Association"
+    "rw_id": "Citizen Association Number"
   },
   "rw": {
     "title": "Citizen Association",
@@ -196,11 +216,11 @@
     "regarding": "Subject",
     "status letter": "Letter Status",
     "summary": "Summary",
-    "choose file": "Choose File",
+    "choose file": "Select File",
     "edit": "Edit Incoming Letter"
   },
   "button": {
-    "add": "Add",
+    "add": "Create",
     "reset": "Reset",
     "back": "Back",
     "save": "Save"
@@ -213,20 +233,20 @@
     "summary": "Summary",
     "regarding": "Subject",
     "list": "List of Outgoing Letter",
-    "create": "Create Data",
-    "chooseFile": "Choose File",
+    "create": "Create Outgoing Letter",
+    "chooseFile": "Select File",
     "edit": "Edit Outgoing Letter"
   },
   "residents": {
-    "resident_id": "ID Resident",
+    "resident_id": "Resident ID",
     "fullname": "Full Name",
-    "family_id": "ID Family",
+    "family_id": "Family ID",
     "place_of_birth": "Place of Birth",
     "date_of_birth": "Date of Birth",
     "profession": "Profession",
     "list": "List of Resident",
     "create": "Create Resident",
-    "statistic": "Statistic",
+    "statistic": "Statistics",
     "status_family": "Family Status",
     "citizen_status": "Citizen Status",
     "gender": "Gender",
@@ -234,7 +254,7 @@
     "address": "Address",
     "region": "Region",
     "family_status": "Family Status",
-    "choose_image": "Choose Image",
+    "choose_image": "Select Image",
     "profession_status": "Profession Status",
     "edit": "Edit Resident"
   },
@@ -244,9 +264,9 @@
     "file": "File",
     "create": "Create Period",
     "title": "Period",
-    "chooseFile": "Choose File",
+    "chooseFile": "Select File",
     "detail": {
-      "title": "Period Detail"
+      "title": "Period Details"
     }
   },
   "incomes": {
@@ -256,25 +276,25 @@
     "code": "Code",
     "amount": "Amount",
     "list": "List of Income",
-    "create": "Create",
-    "createOfIncome": "Create of Income",
-    "statistic": "Statistic",
-    "edit": "Edit of Income"
+    "create": "Create Income",
+    "createOfIncome": "Create Income Data",
+    "statistic": "Statistics",
+    "edit": "Edit Income"
   },
   "expense": {
     "title": "Expense",
     "list": "List of Expense",
-    "create": "Create",
-    "statistic": "Statistic",
+    "create": "Create Expense",
+    "statistic": "Statistics",
     "code": "Code",
     "name": "Name",
     "period": "Period",
     "funding_source_id": "Funding Source",
-    "createOfExpense": "Create of Expense",
-    "is_main": "Not Main Point?",
+    "createOfExpense": "Create Expense Data",
+    "is_main": "Not Main Item?",
     "volume": "Volume",
     "unit": "Unit",
     "amount": "Amount",
-    "edit": "Edit of Expense"
+    "edit": "Edit Expense"
   }
 }

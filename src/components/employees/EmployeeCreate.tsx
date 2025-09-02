@@ -31,15 +31,10 @@ interface Props {
 const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
   const [form] = Form.useForm();
   const [processing, setProcessing] = useState(false);
-  const [signature, setSignature] = useState<UploadFile[] | null>(null);
   const [file, setFile] = useState<UploadFile[] | null>(null);
 
   const handleChangeFile: UploadProps["onChange"] = ({ fileList }) => {
     setFile(fileList);
-  };
-
-  const handleChangeSignature: UploadProps["onChange"] = ({ fileList }) => {
-    setSignature(fileList);
   };
 
   const handleSubmit: FormProps["onFinish"] = (values) => {
@@ -64,10 +59,6 @@ const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
 
     if (file?.length && file[0]?.originFileObj) {
       formData.append("file", file[0].originFileObj);
-    }
-
-    if (signature?.length && signature[0]?.originFileObj) {
-      formData.append("signature", signature[0].originFileObj);
     }
 
     employeeCreated({
@@ -159,20 +150,6 @@ const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
             <Button icon={<UploadOutlined />}>Upload Image</Button>
           </Upload>
         </Form.Item>
-        <Form.Item name={"signature"} label="Choose Signature">
-          <Upload
-            accept="image/*"
-            beforeUpload={() => false}
-            showUploadList
-            listType="picture"
-            multiple={false}
-            maxCount={1}
-            fileList={signature ?? []}
-            onChange={handleChangeSignature}
-          >
-            <Button icon={<UploadOutlined />}>Upload Image</Button>
-          </Upload>
-        </Form.Item>
         <Form.Item style={{ textAlign: "start" }}>
           <Flex gap="small">
             <Button
@@ -188,7 +165,6 @@ const EmployeeCreate = ({ messageApi, notificationApi, fetchData }: Props) => {
               onClick={() => {
                 form.resetFields();
                 setFile(null);
-                setSignature(null);
               }}
             >
               Reset

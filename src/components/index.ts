@@ -75,6 +75,9 @@ import NewsDetailContent from "./news/NewsDetailContent";
 import NewsDetailComment from "./news/NewsDetailComment";
 import SubmissionServiceTable from "./submission-services/SubmissionServiceTable";
 import SubmissionServiceHistoryTable from "./submission-services/SubmissionServiceHistoryTable";
+import DescriptionSubmissionService from "./submission-services/DescriptionSubmissionService";
+import StallTable from "./stalls/StallTable";
+import StallCategoryTable from "./stalls/StallCategoryTable";
 
 export {
   Loading,
@@ -154,4 +157,7 @@ export {
   NewsDetailComment,
   SubmissionServiceTable,
   SubmissionServiceHistoryTable,
+  DescriptionSubmissionService,
+  StallTable,
+  StallCategoryTable,
 };

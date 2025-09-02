@@ -63,7 +63,7 @@ export const periodColumns = ({
           },
         });
       }),
-      sorter: (a, b) => a.year.localeCompare(b.year),
+      sorter: (a, b) => a.year - b.year,
       sortDirections: ["ascend", "descend"],
       render: (value, record) => {
         return (

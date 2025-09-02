@@ -26,8 +26,9 @@ const FamilyCardDetail = () => {
       pageSizeOptions: ["5", "10", "20", "50", "100"],
       showSizeChanger: true,
       total: 0,
-      pageSize: 5,
+      pageSize: 20,
       current: 1,
+      disabled: true,
     },
   });
   const [dataSource, setDataSource] = useState<ResidentModel[]>([]);
@@ -45,7 +46,7 @@ const FamilyCardDetail = () => {
       setLoading(true);
       const response = await getFamilyCardId({
         id: id,
-        pageSize: tableParams.pagination?.pageSize || 5,
+        pageSize: tableParams.pagination?.pageSize || 20,
         current: tableParams.pagination?.current || 1,
       });
       setTableParams((prev) => ({
@@ -85,7 +86,7 @@ const FamilyCardDetail = () => {
 
   return (
     <AdminLayout
-      pageName="Detail 2739128318299"
+      pageName={familyCard.family_id}
       breadCrumbs={[
         {
           title: (
@@ -97,10 +98,7 @@ const FamilyCardDetail = () => {
         },
         {
           title: (
-            <Link
-              to={"/admin/family-cards"}
-              className="flex items-center gap-1"
-            >
+            <Link to={"/admin/family-card"} className="flex items-center gap-1">
               <IdcardOutlined />
               <span className="ml-1">Family Card</span>
             </Link>
@@ -118,6 +116,7 @@ const FamilyCardDetail = () => {
       {contextHolder}
 
       <FamilyCardDescription familyCard={familyCard} />
+
       <FamilyCardListResident
         tableParams={tableParams}
         dataSource={dataSource}

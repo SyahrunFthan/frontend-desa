@@ -8,7 +8,12 @@ import {
   processStart,
   processSuccessN,
 } from "../helpers/process";
-import { createEmployee, deleteEmployee, updateEmployee } from "../apis";
+import {
+  createEmployee,
+  deleteEmployee,
+  updateEmployee,
+  uploadSignatureEmployee,
+} from "../apis";
 import type { AxiosError } from "axios";
 import type { Dispatch, SetStateAction } from "react";
 import { employeeState, type EmployeeModel } from "../models/employee";
@@ -174,10 +179,74 @@ export const employeeDeleted = async ({
         "employeeDeleted",
         axiosError.response?.data?.message || "Not Found"
       );
+    } else if (axiosError.response?.status === 409) {
+      processFail(
+        messageApi,
+        "employeeDeleted",
+        axiosError.response?.data?.message || "Conflict"
+      );
     } else {
       processFail(
         messageApi,
         "employeeDeleted",
+        axiosError.response?.data?.message || "Server Error"
+      );
+    }
+  } finally {
+    processFinish(messageApi, () => {
+      setProcessing(false);
+    });
+  }
+};
+
+interface UploadProps {
+  messageApi: MessageInstance;
+  notificationApi: NotificationInstance;
+  data: FormData;
+  id: string;
+  setProcessing: Dispatch<SetStateAction<boolean>>;
+  handleCancel: () => void;
+  fetchData: () => void;
+}
+
+export const signatureEmoloyeeUploaded = async (params: UploadProps) => {
+  const {
+    data,
+    fetchData,
+    handleCancel,
+    id,
+    messageApi,
+    notificationApi,
+    setProcessing,
+  } = params;
+
+  try {
+    setProcessing(true);
+    processStart(
+      messageApi,
+      "signatureEmoloyeeUploaded",
+      "Uploading Signature..."
+    );
+    const response = await uploadSignatureEmployee(id, data);
+    if (response.status === 200) {
+      handleCancel();
+      processSuccessN(
+        notificationApi,
+        "signatureEmoloyeeUploaded",
+        response.data.message || "Success",
+        () => {
+          fetchData();
+        }
+      );
+    }
+  } catch (error) {
+    const axiosError = error as AxiosError<{ message: string }>;
+    if (axiosError.response?.status === 404) {
+      processFail(messageApi, "signatureEmoloyeeUploaded", "Not Found");
+    } else {
+      processFail(
+        messageApi,
+        "signatureEmoloyeeUploaded",
         axiosError.response?.data?.message || "Server Error"
       );
     }

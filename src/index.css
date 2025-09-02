@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.signature-preview {
+  background: repeating-conic-gradient(#ddd 0% 25%, transparent 0% 50%) 50% /
+    20px 20px;
+}
+
 body {
   @apply font-sans;
   font-family: "Poppins", sans-serif !important;

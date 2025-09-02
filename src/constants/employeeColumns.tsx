@@ -9,13 +9,20 @@ import { Button, Popconfirm, Space, Tag, Tooltip } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { religions } from "../models/global";
+import type { Dispatch, SetStateAction } from "react";
+import EmployeeSignatureUpload from "../components/employees/EmployeeSignatureUpload";
+import type { MessageInstance } from "antd/es/message/interface";
+import type { NotificationInstance } from "antd/es/notification/interface";
 
 interface ColumnProps {
   tableParams: EmployeeTableParams;
-  setTableParams: (tableParams: EmployeeTableParams) => void;
+  setTableParams: Dispatch<SetStateAction<EmployeeTableParams>>;
   processing: boolean;
+  messageApi: MessageInstance;
+  notificationApi: NotificationInstance;
   handleDelete: (id: string) => void;
   handleEdit: (record: EmployeeModel) => void;
+  fetchData: () => void;
 }
 
 export const employeeColumns = ({
@@ -24,6 +31,9 @@ export const employeeColumns = ({
   processing,
   setTableParams,
   tableParams,
+  messageApi,
+  fetchData,
+  notificationApi,
 }: ColumnProps): ColumnsType<EmployeeModel> => [
   {
     key: "employee_id",
@@ -155,6 +165,22 @@ export const employeeColumns = ({
         },
       });
     }),
+  },
+  {
+    key: "signature",
+    title: "Signature",
+    dataIndex: "signature_file",
+    render: (value, record) => {
+      return (
+        <EmployeeSignatureUpload
+          value={value}
+          id={record.id}
+          messageApi={messageApi}
+          fetchData={fetchData}
+          notificationApi={notificationApi}
+        />
+      );
+    },
   },
   {
     key: "action",

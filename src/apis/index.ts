@@ -17,7 +17,6 @@ import type { SocialAssistanceModel } from "../models/socialAssistance";
 import type { TaxModel } from "../models/tax";
 import type { DevelopmentModel } from "../models/development";
 import type { VillageModel } from "../models/village";
-import type { SubmissionServiceModel } from "../models/submissionService";
 
 const API = axios.create({
   baseURL: "http://localhost:5001",
@@ -222,6 +221,14 @@ export const createEmployee = (data: FormData) => {
 };
 export const updateEmployee = (id: string, data: FormData) => {
   return API.patch(`/employee/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const uploadSignatureEmployee = (id: string, data: FormData) => {
+  return API.patch(`/employee/upload/${id}`, data, {
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
@@ -836,6 +843,9 @@ export const getSubmissionService = ({
 
   return API.get(`/submission-service?${params.toString()}`);
 };
+export const getSubmissionServiceId = (id: string) => {
+  return API.get(`/submission-service/${id}`);
+};
 export const getSubmissionServiceHistory = ({
   current,
   pageSize,
@@ -853,12 +863,65 @@ export const getSubmissionServiceHistory = ({
 
   return API.get(`/submission-service/history?${params.toString()}`);
 };
-export const updateStatusSubmissionService = (
-  id: string,
-  data: Pick<SubmissionServiceModel, "code" | "status_submission" | "note">
-) => {
-  return API.put(`/submission-service/${id}`, data);
+export const updateStatusSubmissionService = (id: string, data: FormData) => {
+  return API.put(`/submission-service/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };
 export const deleteSubmissionService = (id: string) => {
   return API.delete(`/submission-service/${id}`);
+};
+
+// Stall
+export const getStall = ({ current, pageSize, filters = {} }: QueryParams) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+
+  Object.entries(filters).map(([key, value]) => {
+    if (value !== null || value !== undefined || value !== "") {
+      params.set(key, value);
+    }
+  });
+
+  return API.get(`/stall?${params.toString()}`);
+};
+export const deleteStall = (id: string) => {
+  return API.delete(`/stall/${id}`);
+};
+
+// Stall Category
+export const getStallCategory = ({
+  current,
+  pageSize,
+  search,
+}: QuerySearch) => {
+  const params = new URLSearchParams();
+  params.set("page", String(current));
+  params.set("page_size", String(pageSize));
+  params.set("search", search);
+
+  return API.get(`/stall-category/?${params.toString()}`);
+};
+export const createStallCategory = (data: FormData) => {
+  return API.post("/stall-category", data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const updateStallCategory = (id: string, data: FormData) => {
+  return API.patch(`/stall-category/${id}`, data, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const deleteStallCategory = (id: string) => {
+  return API.delete(`/stall-category/${id}`);
 };

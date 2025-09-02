@@ -1,44 +1,74 @@
 {
   "dashboard": "Beranda",
-  "resident": "Penduduk",
+  "resident": "Warga",
   "family card": "Kartu Keluarga",
   "employee": {
-    "title": "Aparatur",
+    "title": "Pegawai",
     "fullname": "Nama Lengkap"
   },
   "user": "Pengguna",
   "role": "Peran",
   "incoming letter": "Surat Masuk",
   "outgoing letter": "Surat Keluar",
-  "submission service": "Pengajuan Layanan",
-  "stall": "Lapak",
+  "submissionService": {
+    "title": "Layanan Pengajuan",
+    "list": "Daftar Layanan Pengajuan",
+    "historyList": "Riwayat Layanan Pengajuan",
+    "code": "Nomor Referensi",
+    "status_submission": "Status",
+    "date_of_submission": "Tanggal Pengajuan",
+    "resident_id": "Nama Warga",
+    "service_id": "Nama Layanan",
+    "reason": "Alasan",
+    "detail": {
+      "title": "Detail Layanan Pengajuan"
+    }
+  },
+  "stall": {
+    "title": "Manajemen Lapak",
+    "list": "Daftar Lapak",
+    "resident_id": "Warga",
+    "category_id": "Kategori",
+    "status": "Status",
+    "name": "Nama Lapak",
+    "phone_number": "Nomor Telepon",
+    "address": "Alamat"
+  },
+  "stall_category": {
+    "title": "Kategori Lapak",
+    "list": "Daftar Kategori Lapak",
+    "name": "Nama Kategori",
+    "description": "Deskripsi",
+    "icon": "Ikon",
+    "choose_icon": "Pilih Ikon"
+  },
   "service": {
-    "title": "Pelayanan Publik",
+    "title": "Layanan Publik",
     "name": "Nama",
-    "type_service": "Kategori Layanan",
-    "status_service": "Status Layanan",
+    "type_service": "Kategori",
+    "status_service": "Status",
     "create": "Tambah Data",
     "createOfService": "Tambah Data Layanan",
-    "list": "Daftar Pelayanan Publik",
-    "edit": "Ubah Pelayanan Publik"
+    "list": "Daftar Layanan Publik",
+    "edit": "Edit Layanan Publik"
   },
   "region": {
-    "title": "Batas Dusun",
-    "list": "Daftar Dusun",
+    "title": "Batas Wilayah",
+    "list": "Daftar Wilayah",
     "create": "Tambah Data",
-    "createOfRegion": "Tambah Data Dusun",
+    "createOfRegion": "Tambah Data Wilayah",
     "name": "Nama",
     "leader": "Ketua",
-    "land_area": "Luas Dusun",
+    "land_area": "Luas Area",
     "color": "Warna",
-    "geo_json": "Geo JSON",
+    "geo_json": "GeoJSON",
     "is_draw": "Buat Garis Sendiri?",
     "detail": {
       "title": "Detail",
-      "registration_at": "Tanggal Registrasi",
-      "total_facility": "Total Fasilitas",
-      "total_resident": "Total Penduduk",
-      "leader": "Kepala Dusun"
+      "registration_at": "Pendaftaran",
+      "total_facility": "Jumlah Fasilitas",
+      "total_resident": "Jumlah Warga",
+      "leader": "Ketua"
     }
   },
   "income": "Pendapatan",
@@ -47,12 +77,12 @@
     "title": "Bantuan Sosial",
     "list": "Daftar Bantuan Sosial",
     "create": "Tambah Data",
-    "resident_id": "ID Penduduk",
+    "resident_id": "ID Warga",
     "assistance_id": "Kategori",
     "status_assistance": "Status",
     "month_of_aid": "Bulan",
     "receipt_at": "Tanggal Penerimaan",
-    "edit": "Ubah Data Bantuan Sosial",
+    "edit": "Edit Bantuan Sosial",
     "createOf": "Tambah Data Bantuan Sosial",
     "category": {
       "list": "Daftar Kategori",
@@ -61,23 +91,22 @@
       "type_assistance": "Jenis Pembayaran",
       "amount": "Jumlah",
       "status": "Status",
-      "year": "Tahun",
-      "edit": "Ubah Data Kategori Bantuan Sosial"
+      "year": "Tahun"
     }
   },
   "tax": {
     "title": "Pajak",
     "list": "Daftar Pajak",
     "create": "Tambah Data",
-    "reference_number": "Nomor Objek Pajak",
-    "taxpayer_name": "Nama Objek Pajak",
-    "resident_id": "ID Penduduk",
-    "taxpayer_address": "Alamat Objek Pajak",
+    "reference_number": "Nomor Referensi",
+    "taxpayer_name": "Nama Wajib Pajak",
+    "resident_id": "ID Warga",
+    "taxpayer_address": "Alamat Wajib Pajak",
     "status": "Status Pembayaran",
     "amount": "Jumlah",
     "land_area": "Luas Tanah",
     "building_area": "Luas Bangunan",
-    "edit": "Ubah Data Pajak"
+    "edit": "Edit Pajak"
   },
   "development": {
     "title": "Pembangunan",
@@ -86,22 +115,23 @@
     "createOf": "Tambah Data Pembangunan",
     "name": "Nama Pembangunan",
     "location": "Lokasi",
-    "latitude": "Garis Lintang",
-    "longitude": "Garis Bujur",
+    "latitude": "Lintang",
+    "longitude": "Bujur",
     "volume": "Volume",
     "budget": "Anggaran",
     "source_of_fund": "Sumber Dana",
     "year": "Tahun",
-    "start_at": "Tanggal Mulai",
-    "end_at": "Tanggal Selesai",
+    "start_at": "Mulai",
+    "end_at": "Selesai",
     "status": "Status Pembangunan"
   },
+  "report": "Laporan",
   "activity": {
-    "title": "Aktivitas",
-    "list": "Daftar Aktivitas",
-    "createOf": "Tambah Data Aktivitas",
-    "name": "Nama Aktivitas",
-    "date_of_activity": "Tanggal Aktivitas",
+    "title": "Kegiatan",
+    "list": "Daftar Kegiatan",
+    "createOf": "Tambah Data Kegiatan",
+    "name": "Nama Kegiatan",
+    "date_of_activity": "Tanggal Kegiatan",
     "location": "Lokasi",
     "file": "Pilih Gambar"
   },
@@ -115,19 +145,17 @@
     "type_facility": "Jenis Fasilitas",
     "status": "Status Fasilitas",
     "description": "Deskripsi",
-    "latitude": "Latitude",
-    "longitude": "Longitude",
+    "latitude": "Lintang",
+    "longitude": "Bujur",
     "location": "Lokasi",
-    "region_id": "Pilih Dusun (Optional)"
+    "region_id": "Pilih Wilayah (Opsional)"
   },
-  "report": "Laporan",
-  "gallery": "Galeri",
   "news": {
     "title": "Berita",
     "list": "Daftar Berita",
     "create": "Tambah Data",
     "createOf": "Tambah Data Berita",
-    "edit": "Edit Data Berita",
+    "edit": "Edit Berita",
     "title_news": "Judul",
     "content": "Konten",
     "choose_image": "Pilih Gambar",
@@ -144,25 +172,11 @@
       }
     }
   },
-  "periods": "Periode",
-  "rt": {
-    "title": "Rukun Tetangga",
-    "list": "Daftar Rukun Tetangga",
-    "code": "Kode",
-    "name_of_chairman": "Nama Ketua",
-    "rw_id": "No. RW"
-  },
-  "rw": {
-    "title": "Rukun Warga",
-    "list": "Daftar Rukun Warga",
-    "code": "Kode",
-    "name_of_chairman": "Nama Ketua"
-  },
   "village": {
     "title": "Profil Desa",
-    "title_logo": "Manajemen Logo",
+    "title_logo": "Kelola Logo",
     "title_other": "Visi & Misi",
-    "title_image": "Manajemen Gambar",
+    "title_image": "Kelola Foto",
     "title_about": "Tentang & Sejarah",
     "vission": "Visi",
     "mission": "Misi",
@@ -170,8 +184,22 @@
     "history": "Sejarah"
   },
   "change password": "Ubah Kata Sandi",
-  "sign out": "Keluar Aplikasi",
+  "sign out": "Keluar",
   "create": "Tambah Data",
+  "periods": "Periode",
+  "rt": {
+    "title": "Rukun Tetangga",
+    "list": "Daftar Rukun Tetangga",
+    "code": "Kode",
+    "name_of_chairman": "Ketua",
+    "rw_id": "Nomor Rukun Warga"
+  },
+  "rw": {
+    "title": "Rukun Warga",
+    "list": "Daftar Rukun Warga",
+    "code": "Kode",
+    "name_of_chairman": "Ketua"
+  },
   "incoming letter list": "Daftar Surat Masuk",
   "menu title": {
     "letter": "Manajemen Surat",
@@ -183,22 +211,22 @@
   "incoming letters": {
     "code": "Nomor Referensi",
     "date of letter": "Tanggal Surat",
-    "date of receipt": "Tanggal Diterima",
+    "date of receipt": "Tanggal Penerimaan",
     "sender": "Pengirim",
     "regarding": "Perihal",
     "status letter": "Status Surat",
-    "summary": "Isi",
+    "summary": "Ringkasan",
     "choose file": "Pilih File",
-    "edit": "Ubah Surat Masuk"
+    "edit": "Edit Surat Masuk"
   },
   "button": {
     "add": "Tambah",
-    "reset": "Atur Ulang",
+    "reset": "Reset",
     "back": "Kembali",
     "save": "Simpan"
   },
   "outgoingLetters": {
-    "code": "Nomor Surat",
+    "code": "Nomor Referensi",
     "dateOfLetter": "Tanggal Surat",
     "objective": "Tujuan",
     "statusLetter": "Status Surat",
@@ -206,36 +234,40 @@
     "regarding": "Perihal",
     "list": "Daftar Surat Keluar",
     "create": "Tambah Data",
-    "chooseFile": "Pilih Berkas",
-    "edit": "Ubah Surat Keluar"
+    "chooseFile": "Pilih File",
+    "edit": "Edit Surat Keluar"
   },
   "residents": {
-    "resident_id": "NIK",
+    "resident_id": "ID Warga",
     "fullname": "Nama Lengkap",
-    "family_id": "No. KK",
+    "family_id": "ID Keluarga",
     "place_of_birth": "Tempat Lahir",
     "date_of_birth": "Tanggal Lahir",
     "profession": "Pekerjaan",
-    "list": "Daftar Penduduk",
-    "create": "Tambah Penduduk",
+    "list": "Daftar Warga",
+    "create": "Tambah Data",
     "statistic": "Statistik",
-    "status_family": "Status dalam Keluarga",
-    "citizen_status": "Status Kewarganegaraan",
+    "status_family": "Status Keluarga",
+    "citizen_status": "Status Warga",
     "gender": "Jenis Kelamin",
     "religion": "Agama",
     "address": "Alamat",
     "region": "Wilayah",
-    "family_status": "Status Dalam Keluarga",
+    "family_status": "Status Keluarga",
     "choose_image": "Pilih Gambar",
-    "profession_status": "Bekerja?",
-    "edit": "Ubah Data Penduduk"
+    "profession_status": "Status Pekerjaan",
+    "edit": "Edit Warga"
   },
   "period": {
     "year": "Tahun",
-    "description": "Keterangan",
+    "description": "Deskripsi",
     "file": "File",
+    "create": "Tambah Data",
     "title": "Periode",
-    "chooseFile": "Pilih Berkas"
+    "chooseFile": "Pilih File",
+    "detail": {
+      "title": "Detail Periode"
+    }
   },
   "incomes": {
     "period_id": "Periode",
@@ -243,11 +275,11 @@
     "abbreviation": "Singkatan",
     "code": "Kode",
     "amount": "Jumlah",
-    "list": "Daftar Pemasukan",
+    "list": "Daftar Pendapatan",
     "create": "Tambah Data",
     "createOfIncome": "Tambah Data Pendapatan",
     "statistic": "Statistik",
-    "edit": "Ubah Data Pendapatan"
+    "edit": "Edit Pendapatan"
   },
   "expense": {
     "title": "Pengeluaran",
@@ -258,11 +290,11 @@
     "name": "Nama",
     "period": "Periode",
     "funding_source_id": "Sumber Dana",
-    "createOfExpense": "Tambah Pengeluaran",
-    "is_main": "Bukan Poin Utama?",
+    "createOfExpense": "Tambah Data Pengeluaran",
+    "is_main": "Bukan Pokok Utama?",
     "volume": "Volume",
     "unit": "Satuan",
     "amount": "Jumlah",
-    "edit": "Ubah Data Pengeluaran"
+    "edit": "Edit Pengeluaran"
   }
 }

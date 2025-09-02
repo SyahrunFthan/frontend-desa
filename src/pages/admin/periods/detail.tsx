@@ -150,7 +150,7 @@ const PeriodDetail = () => {
         },
         {
           title: (
-            <Link to={"/admin/periods"}>
+            <Link to={"/admin/period"}>
               <CalendarOutlined />
               <span className="ml-1">{t("periods")}</span>
             </Link>
